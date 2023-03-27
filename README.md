@@ -1,21 +1,21 @@
-# Uniweb Software Development Kit (SDK)
+# Uniweb Module Software Development Kit (SDK)
 
-Uniweb SDK Utils is an npm module that provides a set of React components and utility functions that can be used to make it easier to create and manage widgets.
+Uniweb Module SDK is an npm module that provides a set of React components and utility functions that can be used to make it easier to create and manage widgets.
 
 <!-- This module provides five components: `ProfileImage`, `PopoverMenu`, `SmartLink`, `DocumentImage` and `Blogs`. -->
 
 ## Installation
 
-You can install Uniweb SDK via npm by running the following command:
+You can install Uniweb Module SDK via npm by running the following command:
 
 ```bash
-npm install uniweb-sdk
+npm install uniweb-module-sdk
 ```
 
 Or via yarn:
 
 ```bash
-yarn add uniweb-sdk
+yarn add uniweb-module-sdk
 ```
 
 ## Usage
@@ -35,7 +35,7 @@ The `DocumentImage` component is used to render an element based on the uploaded
 Here's an example of how to use the `DocumentImage` component:
 
 ```jsx
-import { DocumentImage } from 'uniweb-sdk';
+import { DocumentImage } from 'uniweb-module-sdk';
 
 function MyComponent() {
     return (
@@ -60,25 +60,14 @@ The `PopoverMenu` component is used to create a quick open menu. It accepts the 
 Here's an example of how to use the `PopoverMenu` component:
 
 ```jsx
-import { PopoverMenu } from 'uniweb-sdk';
+import { PopoverMenu } from 'uniweb-module-sdk';
 
 function MyComponent() {
-    const options = [
-        <div>Option 1</div>, 
-        <div>Option 2</div>, 
-        <div>Option 2</div>
-    ];
+    const options = [<div>Option 1</div>, <div>Option 2</div>, <div>Option 2</div>];
 
     return (
         <div>
-            <PopoverMenu 
-                trigger={<button>Open Menu</button>} 
-                options={options} 
-                triggerClassName='px-2 py-1 text-blue-600 text-sm border rounded' 
-                position='top-0 left-4' 
-                width='200px' 
-                zIndex='10' 
-            />
+            <PopoverMenu trigger={<button>Open Menu</button>} options={options} triggerClassName='px-2 py-1 text-blue-600 text-sm border rounded' position='top-0 left-4' width='200px' zIndex='10' />
         </div>
     );
 }
@@ -98,15 +87,12 @@ The `SmartLink` component is used to create link element. It accepts the followi
 Here's an example of how to use the `PopoverMenu` component:
 
 ```jsx
-import { SmartLink } from 'uniweb-sdk';
+import { SmartLink } from 'uniweb-module-sdk';
 
 function MyComponent() {
     return (
         <div>
-            <SmartLink 
-                to='https:...' 
-                className='xxx'
-            >
+            <SmartLink to='https:...' className='xxx'>
                 <span>A link</span>
             </SmartLink>
         </div>
@@ -127,18 +113,12 @@ The `ProfileImage` component is used to display a banner or avatar image of a `p
 Here's an example of how to use the `ProfileImage` component:
 
 ```jsx
-import { ProfileImage } from 'uniweb-sdk';
+import { ProfileImage } from 'uniweb-module-sdk';
 
 function MyComponent() {
     return (
         <div>
-            <ProfileImage 
-                contentType='members' 
-                viewType='profile' 
-                contentId='1' 
-                version='123' 
-                type='banner' 
-            />
+            <ProfileImage contentType='members' viewType='profile' contentId='1' version='123' type='banner' />
         </div>
     );
 }
@@ -153,15 +133,12 @@ The `Blogs` component is used to render a page that displays a list of articles 
 Here's an example of how to use the `Blogs` component:
 
 ```jsx
-import { Blogs } from 'uniweb-sdk';
+import { Blogs } from 'uniweb-module-sdk';
 
 function MyComponent(props) {
     return (
         <div>
-            <Blogs 
-                {...props} 
-                recommenderMode='relative' 
-            />
+            <Blogs {...props} recommenderMode='relative' />
         </div>
     );
 }
@@ -183,7 +160,7 @@ Uniweb SDK also provides several utility functions that can be used to perform c
 Here's examples of how to use these functions:
 
 ```js
-import{ client, postClient, localize } from 'uniweb-sdk';
+import{ client, postClient, localize } from 'uniweb-module-sdk';
 
 client
     .get('/api/data', {

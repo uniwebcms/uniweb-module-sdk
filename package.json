@@ -1,18 +1,17 @@
 {
-    "name": "uniweb-widget-utils",
-    "version": "1.0.5",
+    "name": "uniweb-module-sdk",
+    "version": "1.0.0",
     "description": "",
     "main": "dist/bundle.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "webpack --mode=development",
-        "build:prod": "webpack --mode=production",
+        "build": "webpack --mode=production",
         "reinstall": "rm -rf ./node_modules && npm i",
-        "rebuild": "rm -rf ./dist && npm run build:prod"
+        "rebuild": "rm -rf ./dist && npm run build"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://Xiang-Zuo@github.com/Proximify/uniweb-widget-utils.git"
+        "url": "git+https://github.com/uniwebcms/uniweb-module-sdk.git"
     },
     "keywords": [
         "uniweb"
@@ -20,9 +19,9 @@
     "author": "",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/Proximify/uniweb-widget-utils/issues"
+        "url": "https://github.com/uniwebcms/uniweb-module-sdk/issues"
     },
-    "homepage": "https://github.com/Proximify/uniweb-widget-utils#readme",
+    "homepage": "https://github.com/uniwebcms/uniweb-module-sdk#readme",
     "devDependencies": {
         "@babel/core": "^7.13.14",
         "@babel/preset-env": "^7.13.12",
