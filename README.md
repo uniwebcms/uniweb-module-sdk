@@ -9,13 +9,13 @@ Uniweb Module SDK is an npm module that provides a set of React components and u
 You can install Uniweb Module SDK via npm by running the following command:
 
 ```bash
-npm install uniweb-module-sdk
+npm install @uniwebcms/module-sdk
 ```
 
 Or via yarn:
 
 ```bash
-yarn add uniweb-module-sdk
+yarn add @uniwebcms/module-sdk
 ```
 
 ## Usage
@@ -35,7 +35,7 @@ The `DocumentImage` component is used to render an element based on the uploaded
 Here's an example of how to use the `DocumentImage` component:
 
 ```jsx
-import { DocumentImage } from 'uniweb-module-sdk';
+import { DocumentImage } from '@uniwebcms/module-sdk';
 
 function MyComponent() {
     return (
@@ -60,7 +60,7 @@ The `PopoverMenu` component is used to create a quick open menu. It accepts the 
 Here's an example of how to use the `PopoverMenu` component:
 
 ```jsx
-import { PopoverMenu } from 'uniweb-module-sdk';
+import { PopoverMenu } from '@uniwebcms/module-sdk';
 
 function MyComponent() {
     const options = [<div>Option 1</div>, <div>Option 2</div>, <div>Option 2</div>];
@@ -87,7 +87,7 @@ The `SmartLink` component is used to create link element. It accepts the followi
 Here's an example of how to use the `PopoverMenu` component:
 
 ```jsx
-import { SmartLink } from 'uniweb-module-sdk';
+import { SmartLink } from '@uniwebcms/module-sdk';
 
 function MyComponent() {
     return (
@@ -113,7 +113,7 @@ The `ProfileImage` component is used to display a banner or avatar image of a `p
 Here's an example of how to use the `ProfileImage` component:
 
 ```jsx
-import { ProfileImage } from 'uniweb-module-sdk';
+import { ProfileImage } from '@uniwebcms/module-sdk';
 
 function MyComponent() {
     return (
@@ -133,7 +133,7 @@ The `Blogs` component is used to render a page that displays a list of articles 
 Here's an example of how to use the `Blogs` component:
 
 ```jsx
-import { Blogs } from 'uniweb-module-sdk';
+import { Blogs } from '@uniwebcms/module-sdk';
 
 function MyComponent(props) {
     return (
@@ -160,7 +160,7 @@ Uniweb SDK also provides several utility functions that can be used to perform c
 Here's examples of how to use these functions:
 
 ```js
-import{ client, postClient, localize } from 'uniweb-module-sdk';
+import{ client, postClient, localize } from '@uniwebcms/module-sdk';
 
 client
     .get('/api/data', {

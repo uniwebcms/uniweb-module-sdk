@@ -1,8 +1,12 @@
 {
-    "name": "uniweb-module-sdk",
-    "version": "1.0.0",
+    "name": "@uniwebcms/module-sdk",
+    "version": "1.0.1",
     "description": "",
     "main": "dist/bundle.js",
+    "files": [
+        "dist",
+        "src"
+    ],
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "webpack --mode=production",
