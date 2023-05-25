@@ -4,6 +4,8 @@
  * @returns
  */
 function stripHTMLTags(htmlString) {
+    if (!htmlString || typeof htmlString !== 'string') return '';
+
     // Remove HTML tags using regular expression
     const plainString = htmlString.replace(/<[^>]*>/g, '');
 
