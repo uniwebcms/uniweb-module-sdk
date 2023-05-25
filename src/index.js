@@ -4,8 +4,8 @@ import SmartLink from './SmartLink';
 import DocumentImage from './DocumentImage';
 import Blogs from './Blogs';
 import Badge from './Badge';
-import { stripHTMLTags } from './helper';
-import FilterMenu, { getFilteredProfileCards, Search } from './ProfileCardsFilter';
+import { stripHTMLTags, getFilteredProfileCards } from './helper';
+import ProfileCardsFilter from './ProfileCardsFilter';
 
 const website = uniweb.activeWebsite;
 
@@ -13,6 +13,6 @@ const { client, postClient, localize, getProfile, getProfileSection, getListProf
 
 export { client, postClient, localize, getProfile, getProfileSection, getListProfileItems, getProfileTypes, findLink, queryFromContent, parseLinksInArticle, getFirstElementInMap, Profile, website, getFilteredProfileCards };
 
-export { ProfileImage, PopoverMenu, SmartLink, DocumentImage, Blogs, Badge, FilterMenu, Search };
+export { ProfileImage, PopoverMenu, SmartLink, DocumentImage, Blogs, Badge, ProfileCardsFilter };
 
 export { stripHTMLTags };

@@ -2,7 +2,7 @@ import React from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { HiFilter } from 'react-icons/hi';
 
-export default function FilterMenu(props) {
+function Menu(props) {
     const { filterInfo, filters, setFilters, mode = 'menu', width = '100%', menuPlacement = 'bottom-left' } = props;
 
     if (!Object.keys(filterInfo).length) return null;
@@ -118,27 +118,9 @@ export const Search = ({ filters, setFilters }) => {
     return <SearchBox filters={{ searchText }} handleSearch={handleSearch} noMargin={true} />;
 };
 
-export const getFilteredProfileCards = (cards, filters, filterInfo) => {
-    const { searchText = '', ...otherFilters } = filters;
+export default function ProfileCardsFilter({ as: Component = 'div', className, children }) {
+    return <Component className={className}>{children}</Component>;
+}
 
-    const results = cards
-        .filter((card) => {
-            let valid = true;
-            if (searchText) {
-                valid = card.searchText.toLowerCase().includes(searchText.toLowerCase());
-            }
-
-            Object.entries(otherFilters).forEach(([key, value]) => {
-                if (value) {
-                    const validContentIds = filterInfo[key]?.[value] || [];
-
-                    valid = valid && validContentIds.includes(card.contentId);
-                }
-            });
-
-            return valid;
-        })
-        .filter(Boolean);
-
-    return results;
-};
+ProfileCardsFilter.Menu = Menu;
+ProfileCardsFilter.Search = Search;

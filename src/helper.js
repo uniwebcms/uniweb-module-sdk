@@ -15,4 +15,36 @@ function stripHTMLTags(htmlString) {
     return decodedString;
 }
 
-export { stripHTMLTags };
+/**
+ * Function that return filtered cards base on the given filter information and filters value
+ * @param {Array} cards
+ * @param {Object} filters
+ * @param {Object} filterInfo
+ * @returns
+ */
+function getFilteredProfileCards(cards, filters, filterInfo) {
+    const { searchText = '', ...otherFilters } = filters;
+
+    const results = cards
+        .filter((card) => {
+            let valid = true;
+            if (searchText) {
+                valid = card.searchText.toLowerCase().includes(searchText.toLowerCase());
+            }
+
+            Object.entries(otherFilters).forEach(([key, value]) => {
+                if (value) {
+                    const validContentIds = filterInfo[key]?.[value] || [];
+
+                    valid = valid && validContentIds.includes(card.contentId);
+                }
+            });
+
+            return valid;
+        })
+        .filter(Boolean);
+
+    return results;
+}
+
+export { stripHTMLTags, getFilteredProfileCards };
