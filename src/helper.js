@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+
 /**
  * function that uses regular expressions to remove HTML tags from an HTML string and returns a plain string
  * @param {string} htmlString
@@ -47,4 +49,32 @@ function getFilteredProfileCards(cards, filters, filterInfo) {
     return results;
 }
 
-export { stripHTMLTags, getFilteredProfileCards };
+function getFilteredProfiles(profiles, filters, filterInfo) {
+    const { searchText = '', ...otherFilters } = filters;
+
+    const results = profiles.filter((profile) => {
+        let valid = true;
+
+        const cardData = profile.getCardData();
+
+        if (searchText) {
+            valid = cardData.searchText.toLowerCase().includes(searchText.toLowerCase());
+        }
+
+        Object.entries(otherFilters).forEach(([key, value]) => {
+            if (value) {
+                const validContentIds = filterInfo[key]?.[value] || [];
+
+                valid = valid && validContentIds.includes(profile.contentId);
+            }
+        });
+
+        return valid;
+    });
+
+    return results;
+}
+
+const completeProfile = (profile) => profile.makeComplete(useState, useEffect);
+
+export { stripHTMLTags, getFilteredProfileCards, getFilteredProfiles, completeProfile };

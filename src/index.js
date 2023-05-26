@@ -6,7 +6,7 @@ import Blogs from './Blogs';
 import Badge from './Badge';
 import Map from './Map';
 import ProfileCardsFilter from './ProfileCardsFilter';
-import { stripHTMLTags, getFilteredProfileCards } from './helper';
+import { stripHTMLTags, getFilteredProfileCards, getFilteredProfiles, completeProfile } from './helper';
 
 const website = uniweb.activeWebsite;
 
@@ -16,4 +16,4 @@ export { client, postClient, localize, getProfile, getProfileSection, getListPro
 
 export { ProfileImage, PopoverMenu, SmartLink, DocumentImage, Blogs, Badge, ProfileCardsFilter, Map };
 
-export { stripHTMLTags, getFilteredProfileCards };
+export { stripHTMLTags, getFilteredProfileCards, getFilteredProfiles, completeProfile };
