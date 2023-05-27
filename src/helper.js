@@ -12,7 +12,10 @@ function stripHTMLTags(htmlString) {
     const plainString = htmlString.replace(/<[^>]*>/g, '');
 
     // Decode HTML entities
-    const decodedString = new DOMParser().parseFromString(plainString, 'text/html').body.textContent;
+    const decodedString = new DOMParser().parseFromString(
+        plainString,
+        'text/html'
+    ).body.textContent;
 
     return decodedString;
 }
@@ -31,7 +34,9 @@ function getFilteredProfileCards(cards, filters, filterInfo) {
         .filter((card) => {
             let valid = true;
             if (searchText) {
-                valid = card.searchText.toLowerCase().includes(searchText.toLowerCase());
+                valid = card.searchText
+                    .toLowerCase()
+                    .includes(searchText.toLowerCase());
             }
 
             Object.entries(otherFilters).forEach(([key, value]) => {
@@ -58,7 +63,9 @@ function getFilteredProfiles(profiles, filters, filterInfo) {
         const cardData = profile.getCardData();
 
         if (searchText) {
-            valid = cardData.searchText.toLowerCase().includes(searchText.toLowerCase());
+            valid = cardData.searchText
+                .toLowerCase()
+                .includes(searchText.toLowerCase());
         }
 
         Object.entries(otherFilters).forEach(([key, value]) => {
@@ -75,6 +82,46 @@ function getFilteredProfiles(profiles, filters, filterInfo) {
     return results;
 }
 
+/**
+ * @deprecated It is renamed to useReadyState.
+ */
 const completeProfile = (profile) => profile.makeComplete(useState, useEffect);
 
-export { stripHTMLTags, getFilteredProfileCards, getFilteredProfiles, completeProfile };
+/**
+ * Create a React state-effect combo to trigger the initialization of a profile
+ * so that all of its data can be accessed via the at() method.
+ *
+ * @param {Profile} profile
+ * @param {string} profileType
+ * @param {string|null} sectionName
+ * @param {string|null} fieldName
+ * @returns {bool}
+ */
+const useReadyState = (profile) => profile.useReadyState(useState, useEffect);
+
+/**
+ * Filter linked profiles.
+ *
+ * @param {Profile} profile
+ * @param {string} profileType
+ * @param {string|null} sectionName
+ * @param {string|null} fieldName
+ * @returns {bool}
+ */
+const useFilterState = function (profile, profileType, sectionName, fieldName) {
+    return profile.useFilterState(
+        useState,
+        profileType,
+        sectionName,
+        fieldName
+    );
+};
+
+export {
+    stripHTMLTags,
+    getFilteredProfileCards,
+    getFilteredProfiles,
+    completeProfile, // no longer needed
+    useReadyState,
+    useFilterState
+};
