@@ -115,7 +115,7 @@ const useLinkedProfileFilterState = function (
     sectionName,
     fieldName
 ) {
-    return profile.useLinkedFilterState(
+    return profile.useLinkedProfileFilterState(
         useState,
         profileType,
         sectionName,
