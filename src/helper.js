@@ -97,8 +97,8 @@ const completeProfile = (profile) => profile.makeComplete(useState, useEffect);
  * @param {string|null} fieldName
  * @returns {bool}
  */
-const useProfileReadyState = (profile) =>
-    profile.useReadyState(useState, useEffect);
+const useProfileReadyStateEffect = (profile) =>
+    profile.useReadyStateEffect(useState, useEffect);
 
 /**
  * Filter linked profiles.
