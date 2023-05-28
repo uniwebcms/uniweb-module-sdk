@@ -97,7 +97,8 @@ const completeProfile = (profile) => profile.makeComplete(useState, useEffect);
  * @param {string|null} fieldName
  * @returns {bool}
  */
-const useReadyState = (profile) => profile.useReadyState(useState, useEffect);
+const useProfileReadyState = (profile) =>
+    profile.useReadyState(useState, useEffect);
 
 /**
  * Filter linked profiles.
@@ -108,7 +109,12 @@ const useReadyState = (profile) => profile.useReadyState(useState, useEffect);
  * @param {string|null} fieldName
  * @returns {bool}
  */
-const useFilterState = function (profile, profileType, sectionName, fieldName) {
+const useProfileFilterState = function (
+    profile,
+    profileType,
+    sectionName,
+    fieldName
+) {
     return profile.useFilterState(
         useState,
         profileType,
@@ -122,6 +128,6 @@ export {
     getFilteredProfileCards,
     getFilteredProfiles,
     completeProfile, // no longer needed
-    useReadyState,
-    useFilterState
+    useProfileReadyState,
+    useProfileFilterState
 };
