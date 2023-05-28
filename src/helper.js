@@ -109,13 +109,13 @@ const useProfileReadyState = (profile) =>
  * @param {string|null} fieldName
  * @returns {bool}
  */
-const useProfileFilterState = function (
+const useLinkedProfileFilterState = function (
     profile,
     profileType,
     sectionName,
     fieldName
 ) {
-    return profile.useFilterState(
+    return profile.useLinkedFilterState(
         useState,
         profileType,
         sectionName,
@@ -129,5 +129,5 @@ export {
     getFilteredProfiles,
     completeProfile, // no longer needed
     useProfileReadyState,
-    useProfileFilterState
+    useLinkedProfileFilterState
 };
