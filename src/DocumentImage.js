@@ -1,13 +1,60 @@
-import React, { lazy, Suspense } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { localize, website } from './index';
 
-const Component = lazy(() => uniweb.getComponent('widgets', 'DocumentImage').catch(() => ({ default: () => null })));
+const Image = (props) => {
+    const { contentType = 'docufolio', viewType = 'profile', contentId, value, alt = '', activeLang, className = 'w-full h-full object-cover', filePreview = false, externalSrc = '' } = props;
+
+    let finalType = contentType === 'resources' ? 'equipment' : contentType;
+
+    const [version, identifier, filename] = value.split('/');
+
+    const ext = filename.split('.').pop();
+
+    const previewMode = filePreview && !['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg'].includes(ext);
+
+    const assetRootUrl = website.getAssetRootUrl();
+
+    const src = `${assetRootUrl}${finalType}/${viewType}/${contentId}/${previewMode ? `${identifier}_preview` : identifier}_v${version}.${previewMode ? 'webp' : ext}`;
+
+    const altText = localize(alt, '', activeLang) || filename;
+
+    const href = website.buildLoadProfileAssetURL(contentId, contentType, value, viewType, identifier);
+
+    const [imgSrc, setImgSrc] = useState(src);
+    const [isFallback, setIsFallback] = useState(false);
+
+    useEffect(() => {
+        setImgSrc(src);
+        setIsFallback(false);
+    }, [src]);
+
+    const fetchImgSrc = useCallback(() => {
+        fetch(href)
+            .then((res) => res.json())
+            .then((res) => {
+                setIsFallback(true);
+                setImgSrc(res);
+            });
+    }, [href, className, altText]);
+
+    return (
+        <img
+            src={externalSrc || imgSrc}
+            className={className}
+            alt={altText}
+            onError={(event) => {
+                if (website.getActiveUserId() && !isFallback) fetchImgSrc();
+            }}
+        />
+    );
+};
 
 const DocumentImage = (props) => {
-    return (
-        <Suspense fallback={''}>
-            <Component {...props} />
-        </Suspense>
-    );
+    const { value } = props;
+
+    if (!value) return null;
+
+    return <Image {...props}></Image>;
 };
 
 export default DocumentImage;

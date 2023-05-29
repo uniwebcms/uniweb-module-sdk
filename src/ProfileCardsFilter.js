@@ -1,6 +1,7 @@
 import React from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { HiFilter } from 'react-icons/hi';
+import SearchBox from './SearchBox';
 
 function Menu(props) {
     const { filterInfo, filters, setFilters, mode = 'menu', width = '100%', menuPlacement = 'bottom-left' } = props;
@@ -102,8 +103,6 @@ function Menu(props) {
         );
     }
 }
-
-const SearchBox = React.lazy(() => uniweb.getComponent('components', 'SearchBox').catch(() => ({ default: () => null })));
 
 export const Search = ({ filters, setFilters }) => {
     const { searchText = '' } = filters;

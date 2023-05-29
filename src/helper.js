@@ -12,15 +12,13 @@ function stripHTMLTags(htmlString) {
     const plainString = htmlString.replace(/<[^>]*>/g, '');
 
     // Decode HTML entities
-    const decodedString = new DOMParser().parseFromString(
-        plainString,
-        'text/html'
-    ).body.textContent;
+    const decodedString = new DOMParser().parseFromString(plainString, 'text/html').body.textContent;
 
     return decodedString;
 }
 
 /**
+ * @deprecated
  * Function that return filtered cards base on the given filter information and filters value
  * @param {Array} cards
  * @param {Object} filters
@@ -34,9 +32,7 @@ function getFilteredProfileCards(cards, filters, filterInfo) {
         .filter((card) => {
             let valid = true;
             if (searchText) {
-                valid = card.searchText
-                    .toLowerCase()
-                    .includes(searchText.toLowerCase());
+                valid = card.searchText.toLowerCase().includes(searchText.toLowerCase());
             }
 
             Object.entries(otherFilters).forEach(([key, value]) => {
@@ -53,7 +49,13 @@ function getFilteredProfileCards(cards, filters, filterInfo) {
 
     return results;
 }
-
+/**
+ * @deprecated
+ * @param {*} profiles
+ * @param {*} filters
+ * @param {*} filterInfo
+ * @returns
+ */
 function getFilteredProfiles(profiles, filters, filterInfo) {
     const { searchText = '', ...otherFilters } = filters;
 
@@ -63,9 +65,7 @@ function getFilteredProfiles(profiles, filters, filterInfo) {
         const cardData = profile.getCardData();
 
         if (searchText) {
-            valid = cardData.searchText
-                .toLowerCase()
-                .includes(searchText.toLowerCase());
+            valid = cardData.searchText.toLowerCase().includes(searchText.toLowerCase());
         }
 
         Object.entries(otherFilters).forEach(([key, value]) => {
@@ -97,8 +97,7 @@ const completeProfile = (profile) => profile.makeComplete(useState, useEffect);
  * @param {string|null} fieldName
  * @returns {bool}
  */
-const useProfileReadyStateEffect = (profile) =>
-    profile.useReadyStateEffect(useState, useEffect);
+const useProfileReadyStateEffect = (profile) => profile.useReadyStateEffect(useState, useEffect);
 
 /**
  * Filter linked profiles.
@@ -109,25 +108,8 @@ const useProfileReadyStateEffect = (profile) =>
  * @param {string|null} fieldName
  * @returns {bool}
  */
-const useLinkedProfileFilterState = function (
-    profile,
-    profileType,
-    sectionName,
-    fieldName
-) {
-    return profile.useLinkedProfileFilterState(
-        useState,
-        profileType,
-        sectionName,
-        fieldName
-    );
+const useLinkedProfileFilterState = function (profile, profileType, sectionName, fieldName) {
+    return profile.useLinkedProfileFilterState(useState, profileType, sectionName, fieldName);
 };
 
-export {
-    stripHTMLTags,
-    getFilteredProfileCards,
-    getFilteredProfiles,
-    completeProfile, // no longer needed
-    useProfileReadyState,
-    useLinkedProfileFilterState
-};
+export { stripHTMLTags, getFilteredProfileCards, getFilteredProfiles, completeProfile, useProfileReadyStateEffect, useLinkedProfileFilterState };
