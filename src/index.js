@@ -6,7 +6,7 @@ import Blog from './Blog';
 import Badge from './Badge';
 import Map from './Map';
 import ProfileFilter from './ProfileFilter';
-import { stripHTMLTags, useCompleteProfile, useProfileGetBody, useProfileReadyStateEffect, useLinkedProfileFilterState } from './helper';
+import { stripHTMLTags, useGetProfile, useGetProfileBody, useProfileReadyStateEffect, useLinkedProfileFilterState } from './helper';
 
 const website = uniweb.activeWebsite;
 
@@ -18,4 +18,4 @@ export { website, parseLinksInArticle, getFirstElementInMap };
 export { ProfileImage, PopoverMenu, SmartLink, DocumentImage, Blog, Badge, ProfileFilter, Map };
 
 // methods from local helper
-export { stripHTMLTags, useCompleteProfile, useProfileGetBody, useProfileReadyStateEffect, useLinkedProfileFilterState };
+export { stripHTMLTags, useGetProfile, useGetProfileBody, useProfileReadyStateEffect, useLinkedProfileFilterState };
