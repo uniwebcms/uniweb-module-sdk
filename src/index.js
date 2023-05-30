@@ -6,7 +6,7 @@ import Blogs from './Blogs';
 import Badge from './Badge';
 import Map from './Map';
 import ProfileCardsFilter from './ProfileCardsFilter';
-import { stripHTMLTags, getFilteredProfileCards, getFilteredProfiles, completeProfile, useProfileReadyStateEffect, useLinkedProfileFilterState } from './helper';
+import { stripHTMLTags, useCompleteProfile, useProfileGetData, useProfileReadyStateEffect, useLinkedProfileFilterState } from './helper';
 
 const website = uniweb.activeWebsite;
 
@@ -17,4 +17,4 @@ export { client, postClient, localize, getProfile, getProfileSection, getListPro
 export { ProfileImage, PopoverMenu, SmartLink, DocumentImage, Blogs, Badge, ProfileCardsFilter, Map };
 
 // methods from local helper
-export { stripHTMLTags, getFilteredProfileCards, getFilteredProfiles, completeProfile, useProfileReadyStateEffect, useLinkedProfileFilterState };
+export { stripHTMLTags, useCompleteProfile, useProfileGetData, useProfileReadyStateEffect, useLinkedProfileFilterState };
