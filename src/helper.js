@@ -34,7 +34,7 @@ const useProfileReadyStateEffect = (profile) => profile.useReadyStateEffect(useS
  * @param {Profile} profile
  * @returns {bool}
  */
-const useGetProfileBody = (profile) => profile.useReadyStateEffect(useState, useEffect);
+const useLoadProfileBody = (profile) => profile.useReadyStateEffect(useState, useEffect);
 
 /**
  * Create a React state-effect combo to trigger the initialization of a profile
@@ -61,4 +61,4 @@ const useLinkedProfileFilterState = function (profile, profileType, sectionName,
     return profile.useLinkedProfileFilterState(useState, profileType, sectionName, fieldName);
 };
 
-export { stripHTMLTags, useProfileReadyStateEffect, useLinkedProfileFilterState, useGetProfile, useGetProfileBody };
+export { stripHTMLTags, useProfileReadyStateEffect, useLinkedProfileFilterState, useGetProfile, useLoadProfileBody };
