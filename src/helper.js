@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 /**
  * function that uses regular expressions to remove HTML tags from an HTML string and returns a plain string
@@ -6,16 +6,13 @@ import { useState, useEffect } from "react";
  * @returns
  */
 function stripHTMLTags(htmlString) {
-    if (!htmlString || typeof htmlString !== "string") return "";
+    if (!htmlString || typeof htmlString !== 'string') return '';
 
     // Remove HTML tags using regular expression
-    const plainString = htmlString.replace(/<[^>]*>/g, "");
+    const plainString = htmlString.replace(/<[^>]*>/g, '');
 
     // Decode HTML entities
-    const decodedString = new DOMParser().parseFromString(
-        plainString,
-        "text/html"
-    ).body.textContent;
+    const decodedString = new DOMParser().parseFromString(plainString, 'text/html').body.textContent;
 
     return decodedString;
 }
@@ -28,8 +25,7 @@ function stripHTMLTags(htmlString) {
  * @param {Profile} profile
  * @returns {bool}
  */
-const useProfileReadyStateEffect = (profile) =>
-    profile.useReadyStateEffect(useState, useEffect);
+const useProfileReadyStateEffect = (profile) => profile.useReadyStateEffect(useState, useEffect);
 
 /**
  * Create a React state-effect combo to trigger the initialization of a profile
@@ -38,8 +34,7 @@ const useProfileReadyStateEffect = (profile) =>
  * @param {Profile} profile
  * @returns {bool}
  */
-const useProfileGetData = (profile) =>
-    profile.useReadyStateEffect(useState, useEffect);
+const useProfileGetBody = (profile) => profile.useReadyStateEffect(useState, useEffect);
 
 /**
  * Create a React state-effect combo to trigger the initialization of a profile
@@ -51,8 +46,7 @@ const useProfileGetData = (profile) =>
  * @returns {Profile|false} Returns the profile object once it is in a complete (ready) state.
  * Returns false while the profile data is being fetched.
  */
-const useCompleteProfile = (profileType, contentId) =>
-    Profile.useCompleteProfile(useState, useEffect, profileType, contentId);
+const useCompleteProfile = (profileType, contentId) => Profile.useCompleteProfile(useState, useEffect, profileType, contentId);
 
 /**
  * Filter linked profiles.
@@ -63,24 +57,8 @@ const useCompleteProfile = (profileType, contentId) =>
  * @param {string|null} fieldName
  * @returns {bool}
  */
-const useLinkedProfileFilterState = function (
-    profile,
-    profileType,
-    sectionName,
-    fieldName
-) {
-    return profile.useLinkedProfileFilterState(
-        useState,
-        profileType,
-        sectionName,
-        fieldName
-    );
+const useLinkedProfileFilterState = function (profile, profileType, sectionName, fieldName) {
+    return profile.useLinkedProfileFilterState(useState, profileType, sectionName, fieldName);
 };
 
-export {
-    stripHTMLTags,
-    useProfileReadyStateEffect,
-    useLinkedProfileFilterState,
-    useCompleteProfile,
-    useProfileGetData,
-};
+export { stripHTMLTags, useProfileReadyStateEffect, useLinkedProfileFilterState, useCompleteProfile, useProfileGetBody };
