@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 /**
  * function that uses regular expressions to remove HTML tags from an HTML string and returns a plain string
@@ -6,13 +6,16 @@ import { useState, useEffect } from 'react';
  * @returns
  */
 function stripHTMLTags(htmlString) {
-    if (!htmlString || typeof htmlString !== 'string') return '';
+    if (!htmlString || typeof htmlString !== "string") return "";
 
     // Remove HTML tags using regular expression
-    const plainString = htmlString.replace(/<[^>]*>/g, '');
+    const plainString = htmlString.replace(/<[^>]*>/g, "");
 
     // Decode HTML entities
-    const decodedString = new DOMParser().parseFromString(plainString, 'text/html').body.textContent;
+    const decodedString = new DOMParser().parseFromString(
+        plainString,
+        "text/html"
+    ).body.textContent;
 
     return decodedString;
 }
@@ -26,13 +29,15 @@ function stripHTMLTags(htmlString) {
  * @returns
  */
 function getFilteredProfileCards(cards, filters, filterInfo) {
-    const { searchText = '', ...otherFilters } = filters;
+    const { searchText = "", ...otherFilters } = filters;
 
     const results = cards
         .filter((card) => {
             let valid = true;
             if (searchText) {
-                valid = card.searchText.toLowerCase().includes(searchText.toLowerCase());
+                valid = card.searchText
+                    .toLowerCase()
+                    .includes(searchText.toLowerCase());
             }
 
             Object.entries(otherFilters).forEach(([key, value]) => {
@@ -57,7 +62,7 @@ function getFilteredProfileCards(cards, filters, filterInfo) {
  * @returns
  */
 function getFilteredProfiles(profiles, filters, filterInfo) {
-    const { searchText = '', ...otherFilters } = filters;
+    const { searchText = "", ...otherFilters } = filters;
 
     const results = profiles.filter((profile) => {
         let valid = true;
@@ -65,7 +70,9 @@ function getFilteredProfiles(profiles, filters, filterInfo) {
         const cardData = profile.getCardData();
 
         if (searchText) {
-            valid = cardData.searchText.toLowerCase().includes(searchText.toLowerCase());
+            valid = cardData.searchText
+                .toLowerCase()
+                .includes(searchText.toLowerCase());
         }
 
         Object.entries(otherFilters).forEach(([key, value]) => {
@@ -92,12 +99,21 @@ const completeProfile = (profile) => profile.makeComplete(useState, useEffect);
  * so that all of its data can be accessed via the at() method.
  *
  * @param {Profile} profile
- * @param {string} profileType
- * @param {string|null} sectionName
- * @param {string|null} fieldName
  * @returns {bool}
  */
-const useProfileReadyStateEffect = (profile) => profile.useReadyStateEffect(useState, useEffect);
+const useProfileReadyStateEffect = (profile) =>
+    profile.useReadyStateEffect(useState, useEffect);
+
+/**
+ * Create a React state-effect combo to trigger the initialization of a profile
+ * so that all of its data can be accessed via the at() method.
+ *
+ * @param {string} profileType
+ * @param {int|string} contentId
+ * @returns {bool}
+ */
+const useCompleteProfile = (profileType, contentId) =>
+    Profile.useCompleteProfile(useState, useEffect, profileType, contentId);
 
 /**
  * Filter linked profiles.
@@ -108,8 +124,26 @@ const useProfileReadyStateEffect = (profile) => profile.useReadyStateEffect(useS
  * @param {string|null} fieldName
  * @returns {bool}
  */
-const useLinkedProfileFilterState = function (profile, profileType, sectionName, fieldName) {
-    return profile.useLinkedProfileFilterState(useState, profileType, sectionName, fieldName);
+const useLinkedProfileFilterState = function (
+    profile,
+    profileType,
+    sectionName,
+    fieldName
+) {
+    return profile.useLinkedProfileFilterState(
+        useState,
+        profileType,
+        sectionName,
+        fieldName
+    );
 };
 
-export { stripHTMLTags, getFilteredProfileCards, getFilteredProfiles, completeProfile, useProfileReadyStateEffect, useLinkedProfileFilterState };
+export {
+    stripHTMLTags,
+    getFilteredProfileCards,
+    getFilteredProfiles,
+    completeProfile,
+    useProfileReadyStateEffect,
+    useLinkedProfileFilterState,
+    useCompleteProfile,
+};
