@@ -9,11 +9,13 @@ import ProfileCardsFilter from './ProfileCardsFilter';
 import { stripHTMLTags, useCompleteProfile, useProfileGetData, useProfileReadyStateEffect, useLinkedProfileFilterState } from './helper';
 
 const website = uniweb.activeWebsite;
+const localize = website.localize;
 
-const { client, postClient, localize, getProfile, getProfileSection, getListProfileItems, getProfileTypes, findLink, queryFromContent, parseLinksInArticle, getFirstElementInMap, Profile } = uniweb.getServices();
+// methods from uniweb engine
+const { getListProfileItems, parseLinksInArticle, getFirstElementInMap } = uniweb.getServices();
+export { localize, getListProfileItems, parseLinksInArticle, getFirstElementInMap };
 
-export { client, postClient, localize, getProfile, getProfileSection, getListProfileItems, getProfileTypes, findLink, queryFromContent, parseLinksInArticle, getFirstElementInMap, Profile, website };
-
+// React components
 export { ProfileImage, PopoverMenu, SmartLink, DocumentImage, Blogs, Badge, ProfileCardsFilter, Map };
 
 // methods from local helper
