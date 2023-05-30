@@ -22,79 +22,6 @@ function stripHTMLTags(htmlString) {
 
 /**
  * @deprecated
- * Function that return filtered cards base on the given filter information and filters value
- * @param {Array} cards
- * @param {Object} filters
- * @param {Object} filterInfo
- * @returns
- */
-function getFilteredProfileCards(cards, filters, filterInfo) {
-    const { searchText = "", ...otherFilters } = filters;
-
-    const results = cards
-        .filter((card) => {
-            let valid = true;
-            if (searchText) {
-                valid = card.searchText
-                    .toLowerCase()
-                    .includes(searchText.toLowerCase());
-            }
-
-            Object.entries(otherFilters).forEach(([key, value]) => {
-                if (value) {
-                    const validContentIds = filterInfo[key]?.[value] || [];
-
-                    valid = valid && validContentIds.includes(card.contentId);
-                }
-            });
-
-            return valid;
-        })
-        .filter(Boolean);
-
-    return results;
-}
-/**
- * @deprecated
- * @param {*} profiles
- * @param {*} filters
- * @param {*} filterInfo
- * @returns
- */
-function getFilteredProfiles(profiles, filters, filterInfo) {
-    const { searchText = "", ...otherFilters } = filters;
-
-    const results = profiles.filter((profile) => {
-        let valid = true;
-
-        const cardData = profile.getCardData();
-
-        if (searchText) {
-            valid = cardData.searchText
-                .toLowerCase()
-                .includes(searchText.toLowerCase());
-        }
-
-        Object.entries(otherFilters).forEach(([key, value]) => {
-            if (value) {
-                const validContentIds = filterInfo[key]?.[value] || [];
-
-                valid = valid && validContentIds.includes(profile.contentId);
-            }
-        });
-
-        return valid;
-    });
-
-    return results;
-}
-
-/**
- * @deprecated It is renamed to useReadyState.
- */
-const completeProfile = (profile) => profile.makeComplete(useState, useEffect);
-
-/**
  * Create a React state-effect combo to trigger the initialization of a profile
  * so that all of its data can be accessed via the at() method.
  *
@@ -108,9 +35,21 @@ const useProfileReadyStateEffect = (profile) =>
  * Create a React state-effect combo to trigger the initialization of a profile
  * so that all of its data can be accessed via the at() method.
  *
- * @param {string} profileType
- * @param {int|string} contentId
+ * @param {Profile} profile
  * @returns {bool}
+ */
+const useProfileGetData = (profile) =>
+    profile.useReadyStateEffect(useState, useEffect);
+
+/**
+ * Create a React state-effect combo to trigger the initialization of a profile
+ * so that all of its data can be accessed via the at() method.
+ *
+ * @param {string} profileType - A profile object or a profile type string.
+ * @param {int|string} contentId - The ID of the profile if profileOrType is a string.
+ * Otherwise, it must be empty.
+ * @returns {Profile|false} Returns the profile object once it is in a complete (ready) state.
+ * Returns false while the profile data is being fetched.
  */
 const useCompleteProfile = (profileType, contentId) =>
     Profile.useCompleteProfile(useState, useEffect, profileType, contentId);
@@ -140,10 +79,8 @@ const useLinkedProfileFilterState = function (
 
 export {
     stripHTMLTags,
-    getFilteredProfileCards,
-    getFilteredProfiles,
-    completeProfile,
     useProfileReadyStateEffect,
     useLinkedProfileFilterState,
     useCompleteProfile,
+    useProfileGetData,
 };
