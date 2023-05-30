@@ -117,9 +117,9 @@ export const Search = ({ filters, setFilters }) => {
     return <SearchBox filters={{ searchText }} handleSearch={handleSearch} noMargin={true} />;
 };
 
-export default function ProfileCardsFilter({ as: Component = 'div', className, children }) {
+export default function ProfileFilter({ as: Component = 'div', className, children }) {
     return <Component className={className}>{children}</Component>;
 }
 
-ProfileCardsFilter.Menu = Menu;
-ProfileCardsFilter.Search = Search;
+ProfileFilter.Menu = Menu;
+ProfileFilter.Search = Search;

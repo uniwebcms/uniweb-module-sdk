@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from 'react';
 
 const Component = lazy(() => uniweb.getComponent('widgets', 'Blogs').catch(() => ({ default: () => null })));
 
-const Blogs = (props) => {
+const Blog = (props) => {
     return (
         <Suspense fallback={''}>
             <Component {...props} />
@@ -10,4 +10,4 @@ const Blogs = (props) => {
     );
 };
 
-export default Blogs;
+export default Blog;
