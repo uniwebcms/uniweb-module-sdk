@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Profile } from './index';
 
 /**
  * function that uses regular expressions to remove HTML tags from an HTML string and returns a plain string

@@ -11,8 +11,8 @@ import { stripHTMLTags, useGetProfile, useLoadProfileBody, useProfileReadyStateE
 const website = uniweb.activeWebsite;
 
 // methods or objects from uniweb engine
-const { parseLinksInArticle, getFirstElementInMap } = uniweb.getServices();
-export { website, parseLinksInArticle, getFirstElementInMap };
+const { parseLinksInArticle, getFirstElementInMap, Profile } = uniweb.getServices();
+export { Profile, website, parseLinksInArticle, getFirstElementInMap };
 
 // React components
 export { ProfileImage, PopoverMenu, SmartLink, DocumentImage, Blog, Badge, ProfileFilter, Map };
