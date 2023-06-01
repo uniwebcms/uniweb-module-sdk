@@ -10,7 +10,17 @@ const Link = lazy(() =>
 );
 
 export default (props) => {
-    const { children, target = '_self', title = '', style = null, className = '', to = '', profile = null, ariaLabel = '', options = {} } = props;
+    const {
+        children,
+        target = '_self',
+        title = '',
+        style = null,
+        className = '',
+        to = '',
+        profile = null,
+        ariaLabel = '',
+        options = {}
+    } = props;
 
     let anchorProps = {
         className,
@@ -34,7 +44,7 @@ export default (props) => {
 
     // Link from website to uniweb
     if (base_route && href.indexOf('/') === 0) {
-        let appDomain = udomainsInfo?.appDomain;
+        let appDomain = domainsInfo?.appDomain;
         href = `${appDomain}${href}`;
     }
 

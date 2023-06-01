@@ -24,7 +24,11 @@ export default function (props) {
 
     return (
         <div className={className} style={style}>
-            <div className={`w-full h-full rounded-lg overflow-hidden bg-white relative border ${focused ? focusClass : 'border-gray-300 !shadow-sm'}`}>
+            <div
+                className={`w-full h-full rounded-lg overflow-hidden bg-white relative border ${
+                    focused ? focusClass : 'border-gray-300 !shadow-sm'
+                }`}
+            >
                 <input
                     className={`w-full h-full pl-2.5 pr-8 border-0 shadow-none resize-none focus:ring-0 focus:outline-none`}
                     placeholder={placeholderText}
@@ -49,17 +53,22 @@ export default function (props) {
                     }}
                     value={inputValue}
                 />
-                <div className={`w-9 h-full p-2 flex items-center justify-center absolute inset-y-0 right-0 ${inputValue ? '' : 'pointer-events-none'}`}>
+                <div
+                    className={`w-9 h-full p-2 flex items-center justify-center absolute inset-y-0 right-0 ${
+                        inputValue ? '' : 'pointer-events-none'
+                    }`}
+                >
                     {inputValue ? (
                         <button
-                            className='w-full h-full text-gray-300 hover:text-gray-700 focus:ring-0 focus:outline-none'
+                            className="w-full h-full text-gray-300 hover:text-gray-700 focus:ring-0 focus:outline-none"
                             onClick={() => {
                                 handleSearch('');
-                            }}>
-                            <HiX className='w-full h-full' />
+                            }}
+                        >
+                            <HiX className="w-full h-full" />
                         </button>
                     ) : (
-                        <HiSearch className='w-full h-full text-gray-500'></HiSearch>
+                        <HiSearch className="w-full h-full text-gray-500"></HiSearch>
                     )}
                 </div>
             </div>
