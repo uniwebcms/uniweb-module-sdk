@@ -36,7 +36,7 @@ export default (props) => {
     let href = to;
 
     if (profile) {
-        href = profile.makeProfileLink(options);
+        href = profile.makeProfileHref(options);
     }
 
     const domainsInfo = uniweb.activeWebsite.getDomainsInfo();
