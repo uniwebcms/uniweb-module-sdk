@@ -1,24 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { website } from './index';
+import { Profile } from './index';
 
 const Image = (props) => {
-    const { contentType = 'docufolio', viewType = 'profile', contentId, value, alt = '', activeLang, className = 'w-full h-full object-cover', filePreview = false, externalSrc = '' } = props;
+    const { contentType = 'docufolio', contentId, value, alt = '', className = 'w-full h-full object-cover', filePreview = false, externalSrc = '' } = props;
 
-    let finalType = contentType === 'resources' ? 'equipment' : contentType;
+    const profile = Profile.newProfile(contentType, contentId);
 
-    const [version, identifier, filename] = value.split('/');
-
-    const ext = filename.split('.').pop();
-
-    const previewMode = filePreview && !['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg'].includes(ext);
-
-    const assetRootUrl = website.getAssetRootUrl();
-
-    const src = `${assetRootUrl}${finalType}/${viewType}/${contentId}/${previewMode ? `${identifier}_preview` : identifier}_v${version}.${previewMode ? 'webp' : ext}`;
-
-    const altText = website.localize(alt) || filename;
-
-    const href = website.buildLoadProfileAssetURL(contentId, contentType, value, viewType, identifier);
+    const { href, src, altText } = profile.getAssetInfo(value, filePreview, alt);
 
     const [imgSrc, setImgSrc] = useState(src);
     const [isFallback, setIsFallback] = useState(false);
@@ -35,7 +23,7 @@ const Image = (props) => {
                 setIsFallback(true);
                 setImgSrc(res);
             });
-    }, [href, className, altText]);
+    }, [href]);
 
     return (
         <img
@@ -43,18 +31,35 @@ const Image = (props) => {
             className={className}
             alt={altText}
             onError={(event) => {
-                if (website.getActiveUserId() && !isFallback) fetchImgSrc();
+                if (Profile.editableMode() && !isFallback) fetchImgSrc();
             }}
         />
     );
 };
 
-const DocumentImage = (props) => {
+export default function DocumentImage(props) {
     const { value } = props;
 
     if (!value) return null;
 
     return <Image {...props}></Image>;
-};
+}
 
-export default DocumentImage;
+/**
+ * 
+    // let finalType = contentType === 'resources' ? 'equipment' : contentType;
+
+    // const [version, identifier, filename] = value.split('/');
+
+    // const ext = filename.split('.').pop();
+
+    // const previewMode = filePreview && !['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg'].includes(ext);
+
+    // const assetRootUrl = website.getAssetRootUrl();
+
+    // const src = `${assetRootUrl}${finalType}/${viewType}/${contentId}/${previewMode ? `${identifier}_preview` : identifier}_v${version}.${previewMode ? 'webp' : ext}`;
+
+    // const altText = website.localize(alt) || filename;
+
+    // const href = website.buildLoadProfileAssetURL(contentId, contentType, value, viewType, identifier);
+ */

@@ -1,25 +1,11 @@
 import React from 'react';
-import { website } from './index';
 
 export default function ProfileImage(props) {
-    const { type = 'banner', rounded, profile, size } = props;
+    const { profile, type, rounded, size } = props;
 
-    const info = website.getProfileImageUrl(profile, type, size);
+    const { url, alt } = profile.getImageInfo(type, size);
 
-    // const imgRef = useRef(null);
+    const imgRounded = rounded ? (rounded === true ? 'rounded-full' : rounded) : '';
 
-    return (
-        <img
-            // ref={imgRef}
-            src={info.url}
-            className={`w-full h-full object-cover ${rounded}`}
-            alt={info.alt}
-            loading='lazy'
-            // onError={() => {
-            //     if (imgRef.current && imgRef.current.src !== info.defaultUrl) {
-            //         imgRef.current.src = info.defaultUrl;
-            //     }
-            // }}
-        />
-    );
+    return <img src={url} className={`w-full h-full object-cover ${imgRounded}`} alt={alt} loading='lazy' />;
 }
