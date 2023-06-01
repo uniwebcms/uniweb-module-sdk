@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { localize, website } from './index';
+import { website } from './index';
 
 const Image = (props) => {
     const { contentType = 'docufolio', viewType = 'profile', contentId, value, alt = '', activeLang, className = 'w-full h-full object-cover', filePreview = false, externalSrc = '' } = props;
@@ -16,7 +16,7 @@ const Image = (props) => {
 
     const src = `${assetRootUrl}${finalType}/${viewType}/${contentId}/${previewMode ? `${identifier}_preview` : identifier}_v${version}.${previewMode ? 'webp' : ext}`;
 
-    const altText = localize(alt, '', activeLang) || filename;
+    const altText = website.localize(alt) || filename;
 
     const href = website.buildLoadProfileAssetURL(contentId, contentType, value, viewType, identifier);
 

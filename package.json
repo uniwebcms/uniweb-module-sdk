@@ -9,7 +9,7 @@
     ],
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "webpack --mode=production",
+        "build": "webpack --mode=production --watch",
         "reinstall": "rm -rf ./node_modules && npm i",
         "rebuild": "rm -rf ./dist && npm run build"
     },
