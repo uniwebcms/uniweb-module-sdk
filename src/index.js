@@ -1,6 +1,6 @@
 import ProfileImage from './ProfileImage';
 import PopoverMenu from './PopoverMenu';
-import SmartLink from './SmartLink';
+import Link from './Link';
 import DocumentImage from './DocumentImage';
 import Blog from './Blog';
 import Badge from './Badge';
@@ -20,7 +20,7 @@ const { parseLinksInArticle, getFirstElementInMap, Profile } = uniweb.getService
 export { Profile, website, parseLinksInArticle, getFirstElementInMap };
 
 // React components
-export { ProfileImage, PopoverMenu, SmartLink, DocumentImage, Blog, Badge, ProfileFilter, Map };
+export { ProfileImage, PopoverMenu, Link, DocumentImage, Blog, Badge, ProfileFilter, Map };
 
 // methods from local helper
 export { stripHTMLTags, useGetProfile, useLoadProfileBody, useLinkedProfileFilterState };
