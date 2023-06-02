@@ -2,7 +2,15 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Profile } from './index';
 
 const Image = (props) => {
-    const { contentType = 'docufolio', contentId, value, alt = '', className = 'w-full h-full object-cover', filePreview = false, externalSrc = '' } = props;
+    const {
+        contentType = 'docufolio',
+        contentId,
+        value,
+        alt = '',
+        className = 'w-full h-full object-cover',
+        filePreview = false,
+        externalSrc = ''
+    } = props;
 
     const profile = Profile.newProfile(contentType, contentId);
 

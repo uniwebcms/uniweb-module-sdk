@@ -13,20 +13,11 @@ function stripHTMLTags(htmlString) {
     const plainString = htmlString.replace(/<[^>]*>/g, '');
 
     // Decode HTML entities
-    const decodedString = new DOMParser().parseFromString(plainString, 'text/html').body.textContent;
+    const decodedString = new DOMParser().parseFromString(plainString, 'text/html').body
+        .textContent;
 
     return decodedString;
 }
-
-/**
- * @deprecated
- * Create a React state-effect combo to trigger the initialization of a profile
- * so that all of its data can be accessed via the at() method.
- *
- * @param {Profile} profile
- * @returns {bool}
- */
-const useProfileReadyStateEffect = (profile) => profile.useReadyStateEffect(useState, useEffect);
 
 /**
  * Create a React state-effect combo to trigger the initialization of a profile
@@ -47,7 +38,8 @@ const useLoadProfileBody = (profile) => profile.useReadyStateEffect(useState, us
  * @returns {Profile|false} Returns the profile object once it is in a complete (ready) state.
  * Returns false while the profile data is being fetched.
  */
-const useGetProfile = (profileType, contentId) => Profile.useCompleteProfile(useState, useEffect, profileType, contentId);
+const useGetProfile = (profileType, contentId) =>
+    Profile.useCompleteProfile(useState, useEffect, profileType, contentId);
 
 /**
  * Filter linked profiles.
@@ -62,4 +54,4 @@ const useLinkedProfileFilterState = function (profile, profileType, sectionName,
     return profile.useLinkedProfileFilterState(useState, profileType, sectionName, fieldName);
 };
 
-export { stripHTMLTags, useProfileReadyStateEffect, useLinkedProfileFilterState, useGetProfile, useLoadProfileBody };
+export { stripHTMLTags, useLinkedProfileFilterState, useGetProfile, useLoadProfileBody };

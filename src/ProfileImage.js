@@ -7,5 +7,12 @@ export default function ProfileImage(props) {
 
     const imgRounded = rounded ? (rounded === true ? 'rounded-full' : rounded) : '';
 
-    return <img src={url} className={`w-full h-full object-cover ${imgRounded}`} alt={alt} loading='lazy' />;
+    return (
+        <img
+            src={url}
+            className={`w-full h-full object-cover ${imgRounded}`}
+            alt={alt}
+            loading="lazy"
+        />
+    );
 }
