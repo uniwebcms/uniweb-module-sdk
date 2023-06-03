@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { HiSearch, HiX } from 'react-icons/hi';
-import { website } from './index';
+import { website } from './helper';
 
 export default function (props) {
     const { placeholder = '', filters = {}, handleSearch, live = true } = props;

@@ -3,7 +3,7 @@ import { useState, useEffect, lazy } from 'react';
 const website = uniweb.activeWebsite;
 const Profile = uniweb.Profile;
 
-const getComponent = (name) => lazy(() => uniweb.getComponent(name));
+const getComponent = (type, name) => lazy(() => uniweb.getComponent(type, name));
 
 /**
  * function that uses regular expressions to remove HTML tags from an HTML string and returns a plain string

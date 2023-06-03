@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Profile } from './index';
+import { Profile } from './helper';
 
 const Image = (props) => {
     const {

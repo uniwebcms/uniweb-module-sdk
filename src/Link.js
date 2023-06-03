@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
-import { getComponent } from './helper.js';
+import { getComponent } from './helper';
 
-const SimpleLink = getComponent('SimpleLink');
+const SimpleLink = getComponent(null, 'SimpleLink');
 
 export default function Link(props) {
     return (
