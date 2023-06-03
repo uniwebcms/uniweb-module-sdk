@@ -7,16 +7,16 @@ import Badge from './Badge';
 import Map from './Map';
 import ProfileFilter from './ProfileFilter';
 import {
+    Profile,
+    website,
     stripHTMLTags,
     useGetProfile,
     useLoadProfileBody,
     useLinkedProfileFilterState
 } from './helper';
 
-const website = uniweb.activeWebsite;
-
 // methods or objects from uniweb engine
-const { parseLinksInArticle, getFirstElementInMap, Profile } = uniweb.getServices();
+const { parseLinksInArticle, getFirstElementInMap } = uniweb.getServices();
 export { Profile, website, parseLinksInArticle, getFirstElementInMap };
 
 // React components
