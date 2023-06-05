@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { Profile } from './index';
 
 /**
- * function that uses regular expressions to remove HTML tags from an HTML string and returns a plain string
+ * Strip html string uses regular expressions;
+ * Remove all HTML tags from an HTML string and returns a plain string
  * @param {string} htmlString
- * @returns
+ * @returns {string} plainString
  */
 function stripHTMLTags(htmlString) {
     if (!htmlString || typeof htmlString !== 'string') return '';
@@ -54,4 +55,16 @@ const useLinkedProfileFilterState = function (profile, profileType, sectionName,
     return profile.useLinkedProfileFilterState(useState, profileType, sectionName, fieldName);
 };
 
-export { stripHTMLTags, useLinkedProfileFilterState, useGetProfile, useLoadProfileBody };
+/**
+ *
+ * @param {Object} block
+ */
+const parseBlockLinks = (block) => {};
+
+export {
+    stripHTMLTags,
+    useLinkedProfileFilterState,
+    useGetProfile,
+    useLoadProfileBody,
+    parseBlockLinks
+};

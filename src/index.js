@@ -10,7 +10,8 @@ import {
     stripHTMLTags,
     useGetProfile,
     useLoadProfileBody,
-    useLinkedProfileFilterState
+    useLinkedProfileFilterState,
+    parseBlockLinks
 } from './helper';
 
 const website = uniweb.activeWebsite;
@@ -23,4 +24,10 @@ export { Profile, website, parseLinksInArticle, getFirstElementInMap };
 export { ProfileImage, PopoverMenu, Link, DocumentImage, Blog, Badge, ProfileFilter, Map };
 
 // methods from local helper
-export { stripHTMLTags, useGetProfile, useLoadProfileBody, useLinkedProfileFilterState };
+export {
+    stripHTMLTags,
+    useGetProfile,
+    useLoadProfileBody,
+    useLinkedProfileFilterState,
+    parseBlockLinks
+};
