@@ -19,7 +19,7 @@ export default function Map(props) {
 
     const { isLoaded, loadError } = useJsApiLoader({
         googleMapsApiKey: APIKey,
-        language: website.language()
+        language: website.getLanguage()
     });
 
     if (isLoaded) {
