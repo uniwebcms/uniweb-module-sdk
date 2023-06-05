@@ -1,5 +1,9 @@
-import { useState, useEffect } from 'react';
-import { Profile } from './index';
+import { useState, useEffect, lazy } from 'react';
+
+const website = uniweb.activeWebsite;
+const Profile = uniweb.Profile;
+
+const getComponent = (type, name) => lazy(() => uniweb.getComponent(type, name));
 
 /**
  * Strip html string uses regular expressions;
@@ -62,7 +66,10 @@ const useLinkedProfileFilterState = function (profile, profileType, sectionName,
 const parseBlockLinks = (block) => {};
 
 export {
+    Profile,
+    website,
     stripHTMLTags,
+    getComponent,
     useLinkedProfileFilterState,
     useGetProfile,
     useLoadProfileBody,

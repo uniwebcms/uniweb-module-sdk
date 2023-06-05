@@ -1,12 +1,25 @@
 import React from 'react';
 import { useJsApiLoader, GoogleMap, Marker } from '@react-google-maps/api';
+import { website } from './helper';
 
+/**
+ * Create a Map.
+ *
+ * @param {Object} props - The component properties.
+ * @param {string} props.APIKey -
+ * @param {string} props.center -
+ * @param {string} props.zoom -
+ * @param {Array} props.markerPositions -
+ * @param {string} [props.height='600px'] -
+ * @param {string} [props.width='800px'] -
+ * @returns {function} A Map component.
+ */
 export default function Map(props) {
     const { APIKey, center, zoom, markerPositions = [], height = '600px', width = '800px' } = props;
 
     const { isLoaded, loadError } = useJsApiLoader({
         googleMapsApiKey: APIKey,
-        language: 'en'
+        language: website.language()
     });
 
     if (isLoaded) {
@@ -25,7 +38,7 @@ export default function Map(props) {
                 })}
             </GoogleMap>
         );
-    } else if (loadError) return <div>Unable to load Map, please try again later.</div>;
+    } else if (loadError) return <div>Unable to load Map.</div>;
 
     return null;
 }

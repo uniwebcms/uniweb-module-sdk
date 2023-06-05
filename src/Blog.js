@@ -1,16 +1,12 @@
-import React, { lazy, Suspense } from 'react';
-import { website } from './index';
+import React, { Suspense } from 'react';
+import { getComponent } from './helper';
 
-const Component = lazy(() =>
-    website.getComponent('widgets', 'Blogs').catch(() => ({ default: () => null }))
-);
+const Component = getComponent('widgets', 'Blogs');
 
-const Blog = (props) => {
+export default function Blog(props) {
     return (
         <Suspense fallback={''}>
             <Component {...props} />
         </Suspense>
     );
-};
-
-export default Blog;
+}
