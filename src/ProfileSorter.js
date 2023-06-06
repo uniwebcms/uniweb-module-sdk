@@ -5,9 +5,12 @@ import { usePopper, Portal } from './PopoverMenu';
 import { website } from './helper';
 
 export default function ProfileSorter(props) {
-    const { filters, setFilters } = props;
+    const {
+        filter: { selection },
+        setFilter
+    } = props;
 
-    const { _sort, ...otherFilters } = filters;
+    const { _sort, ...otherFilters } = selection;
 
     const [trigger, container] = usePopper({
         placement: 'bottom-end',
@@ -24,7 +27,7 @@ export default function ProfileSorter(props) {
     });
 
     const handleSelect = (newValue) => {
-        setFilters({
+        setFilter({
             ...otherFilters,
             _sort: newValue
         });
