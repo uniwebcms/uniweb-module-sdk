@@ -4,6 +4,7 @@
     "prettier.printWidth": 100,
     "cSpell.words": [
         "docufolio",
-        "uniweb"
+        "uniweb",
+        "uniwebcms"
     ],
 }
