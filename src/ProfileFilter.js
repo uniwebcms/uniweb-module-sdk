@@ -21,9 +21,9 @@ function Menu(props) {
 
 	if (!Object.keys(filterInfo).length) return null;
 
-	const numberOfFilterApplied = Object.keys(filters)
-		.map((key) => (filters[key] && key !== 'searchText' ? true : false))
-		.filter(Boolean).length;
+    const numberOfFilterApplied = Object.keys(filters)
+        .map((key) => (filters[key] && key !== 'searchText' && key !== '_sort' ? true : false))
+        .filter(Boolean).length;
 
 	const handleSelect = (key, value) => {
 		setFilters({
@@ -32,10 +32,6 @@ function Menu(props) {
 		});
 	};
 
-	const position = {
-		'bottom-left': 'top-full right-0 mt-2.5',
-		'bottom-right': 'top-full left-0 mt-2.5'
-	};
 
 	if (mode === 'linear') {
 		return (
@@ -46,41 +42,40 @@ function Menu(props) {
 							{Object.keys(categoryData).map((key) => {
 								const isActive = filters[category] === key;
 
-								return (
-									<div
-										key={key}
-										className={`px-3 py-1 border rounded-lg cursor-pointer ${
-											isActive
-												? 'text-white bg-blue-600 hover:bg-blue-500'
-												: 'bg-gray-100 hover:bg-white text-gray-700 hover:text-gray-900'
-										}`}
-										onClick={() => {
-											handleSelect(category, isActive ? '' : key);
-										}}
-									>
-										{key}
-									</div>
-								);
-							})}
-						</React.Fragment>
-					);
-				})}
-			</div>
-		);
-	} else {
-		let [trigger, container] = usePopper({
-			placement: 'bottom-end',
-			modifiers: [
-				{ name: 'offset', options: { offset: [0, 10] } },
-				{
-					name: 'zIndex',
-					enabled: true,
-					options: {
-						zIndex: 100 // Set your desired zIndex value
-					}
-				}
-			]
-		});
+                                return (
+                                    <div
+                                        key={key}
+                                        className={`px-3 py-1 border rounded-lg cursor-pointer ${
+                                            isActive
+                                                ? 'text-white bg-blue-600 hover:bg-blue-500'
+                                                : 'bg-gray-100 hover:bg-white text-gray-700 hover:text-gray-900'
+                                        }`}
+                                        onClick={() => {
+                                            handleSelect(category, isActive ? '' : key);
+                                        }}>
+                                        {key}
+                                    </div>
+                                );
+                            })}
+                        </React.Fragment>
+                    );
+                })}
+            </div>
+        );
+    } else {
+        let [trigger, container] = usePopper({
+            placement: 'bottom-end',
+            modifiers: [
+                { name: 'offset', options: { offset: [0, 10] } },
+                {
+                    name: 'zIndex',
+                    enabled: true,
+                    options: {
+                        zIndex: 100
+                    }
+                }
+            ]
+        });
 
 		const menu = Object.entries(filterInfo).map(([category, categoryData], index) => {
 			return (
@@ -172,7 +167,13 @@ export const Search = ({ filters, setFilters }) => {
 		});
 	};
 
-	return <SearchBox filters={{ searchText }} handleSearch={handleSearch} noMargin={true} />;
+    return (
+        <SearchBox
+            filters={{ searchText }}
+            handleSearch={handleSearch}
+            style={{ marginRight: '6px' }}
+        />
+    );
 };
 
 export default function ProfileFilter({ as: Component = 'div', className, children }) {
