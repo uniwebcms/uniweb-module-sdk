@@ -6,6 +6,8 @@ import Blog from './Blog';
 import Badge from './Badge';
 import Map from './Map';
 import ProfileFilter from './ProfileFilter';
+import SearchBox from './SearchBox';
+// import ProfileArticles from './components/ProfileArticles';
 import {
     Profile,
     website,
@@ -13,7 +15,8 @@ import {
     useGetProfile,
     useLoadProfileBody,
     useLinkedProfileFilterState,
-    parseBlockLinks
+    parseBlockLinks,
+    getComponent
 } from './helper';
 
 // methods or objects from uniweb engine
@@ -21,7 +24,18 @@ const { parseLinksInArticle, getFirstElementInMap } = uniweb.getServices();
 export { Profile, website, parseLinksInArticle, getFirstElementInMap };
 
 // React components
-export { ProfileImage, PopoverMenu, Link, DocumentImage, Blog, Badge, ProfileFilter, Map };
+export {
+    ProfileImage,
+    PopoverMenu,
+    Link,
+    DocumentImage,
+    Blog,
+    Badge,
+    ProfileFilter,
+    Map,
+    // ProfileArticles,
+    SearchBox
+};
 
 // methods from local helper
 export {
@@ -29,5 +43,6 @@ export {
     useGetProfile,
     useLoadProfileBody,
     useLinkedProfileFilterState,
-    parseBlockLinks
+    parseBlockLinks,
+    getComponent
 };
