@@ -20,7 +20,9 @@ yarn add @uniwebcms/module-sdk
 
 ## Usage
 
-#### Link
+Read the [API reference](docs/api.md) to learn about the components and functions offered by the SDK.
+
+<!-- #### Link
 
 The `Link` component is used to create link element. It accepts the following props:
 
@@ -180,7 +182,9 @@ getProfileSection('_contentType', '_contentId', '_sectionId');
 getListProfileItems('_listId');
 
 getProfileTypes('_contentType', '_viewType');
-```
+``` -->
+
+* * *
 
 ## License
 
