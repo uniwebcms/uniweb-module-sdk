@@ -22,6 +22,16 @@ yarn add @uniwebcms/module-sdk
 
 Read the [API reference](docs/api.md) to learn about the components and functions offered by the SDK.
 
+## Example
+
+Render a webpage that offers functionality to search, filter and sort **project cards** linked to a given a **source group profile** `profile`. The managing of rendering states is done with the SDK hook `useLinkedProfileFilterState`, which returns a list of project profiles linked to the source group profile.
+
+In this example, the `description` value of a project is not included in the basic information of a project profile. The description value is asynchronously fetched via the provided state/effect hook `useLoadProfileBody`.
+
+```javascript
+
+```
+
 <!-- #### Link
 
 The `Link` component is used to create link element. It accepts the following props:
