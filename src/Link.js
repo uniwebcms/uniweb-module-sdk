@@ -15,7 +15,7 @@ const SimpleLink = getComponent(null, 'SimpleLink');
  * @param {string?} props.options.searchParams - Extra arguments for the profile HREF.
  * @param {string?} [props.target='_self'] - A `target` attribute for the anchor element.
  * @param {string?} props.title - A `title` attribute for the anchor element.
- * @param {string?} props.style - A `style` attribute for the anchor element.
+ * @param {string|Profile} props.style - A `style` attribute for the anchor element.
  * @param {string?} props.className - A `className` attribute for the anchor element.
  * @param {string?} props.to - An `href` attribute for the anchor element.
  * @param {string?} props.ariaLabel - An ARIA label for the anchor element.
@@ -23,9 +23,9 @@ const SimpleLink = getComponent(null, 'SimpleLink');
  * @returns {function} A Link component.
  */
 export default function Link(props) {
-    return (
-        <Suspense fallback={''}>
-            <SimpleLink {...props} />
-        </Suspense>
-    );
+	return (
+		<Suspense fallback={''}>
+			<SimpleLink {...props} />
+		</Suspense>
+	);
 }
