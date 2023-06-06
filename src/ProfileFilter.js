@@ -17,7 +17,7 @@ function Menu(props) {
     if (!Object.keys(filterInfo).length) return null;
 
     const numberOfFilterApplied = Object.keys(filters)
-        .map((key) => (filters[key] && key !== 'searchText' ? true : false))
+        .map((key) => (filters[key] && key !== 'searchText' && key !== '_sort' ? true : false))
         .filter(Boolean).length;
 
     const handleSelect = (key, value) => {
@@ -27,10 +27,10 @@ function Menu(props) {
         });
     };
 
-    const position = {
-        'bottom-left': 'top-full right-0 mt-2.5',
-        'bottom-right': 'top-full left-0 mt-2.5'
-    };
+    // const position = {
+    //     'bottom-left': 'top-full right-0 mt-2.5',
+    //     'bottom-right': 'top-full left-0 mt-2.5'
+    // };
 
     if (mode === 'linear') {
         return (
@@ -70,7 +70,7 @@ function Menu(props) {
                     name: 'zIndex',
                     enabled: true,
                     options: {
-                        zIndex: 100 // Set your desired zIndex value
+                        zIndex: 100
                     }
                 }
             ]
@@ -163,7 +163,13 @@ export const Search = ({ filters, setFilters }) => {
         });
     };
 
-    return <SearchBox filters={{ searchText }} handleSearch={handleSearch} noMargin={true} />;
+    return (
+        <SearchBox
+            filters={{ searchText }}
+            handleSearch={handleSearch}
+            style={{ marginRight: '6px' }}
+        />
+    );
 };
 
 export default function ProfileFilter({ as: Component = 'div', className, children }) {

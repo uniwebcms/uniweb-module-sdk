@@ -6,6 +6,7 @@ import Blog from './Blog';
 import Badge from './Badge';
 import Map from './Map';
 import ProfileFilter from './ProfileFilter';
+import ProfileSorter from './ProfileSorter';
 import SearchBox from './SearchBox';
 // import ProfileArticles from './components/ProfileArticles';
 import {
@@ -34,7 +35,8 @@ export {
     ProfileFilter,
     Map,
     // ProfileArticles,
-    SearchBox
+    SearchBox,
+    ProfileSorter
 };
 
 // methods from local helper
