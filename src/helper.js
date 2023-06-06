@@ -12,16 +12,16 @@ const getComponent = (type, name) => lazy(() => uniweb.getComponent(type, name))
  * @returns {string} plainString
  */
 function stripHTMLTags(htmlString) {
-    if (!htmlString || typeof htmlString !== 'string') return '';
+	if (!htmlString || typeof htmlString !== 'string') return '';
 
-    // Remove HTML tags using regular expression
-    const plainString = htmlString.replace(/<[^>]*>/g, '');
+	// Remove HTML tags using regular expression
+	const plainString = htmlString.replace(/<[^>]*>/g, '');
 
-    // Decode HTML entities
-    const decodedString = new DOMParser().parseFromString(plainString, 'text/html').body
-        .textContent;
+	// Decode HTML entities
+	const decodedString = new DOMParser().parseFromString(plainString, 'text/html').body
+		.textContent;
 
-    return decodedString;
+	return decodedString;
 }
 
 /**
@@ -44,7 +44,7 @@ const useLoadProfileBody = (profile) => profile.useReadyStateEffect(useState, us
  * Returns false while the profile data is being fetched.
  */
 const useGetProfile = (profileType, contentId) =>
-    Profile.useCompleteProfile(useState, useEffect, profileType, contentId);
+	Profile.useCompleteProfile(useState, useEffect, profileType, contentId);
 
 /**
  * Filter linked profiles.
@@ -56,7 +56,7 @@ const useGetProfile = (profileType, contentId) =>
  * @returns {bool}
  */
 const useLinkedProfileFilterState = function (profile, profileType, sectionName, fieldName) {
-    return profile.useLinkedProfileFilterState(useState, profileType, sectionName, fieldName);
+	return profile.useLinkedProfileFilterState(useState, profileType, sectionName, fieldName);
 };
 
 /**
@@ -66,12 +66,12 @@ const useLinkedProfileFilterState = function (profile, profileType, sectionName,
 const parseBlockLinks = (block) => {};
 
 export {
-    Profile,
-    website,
-    stripHTMLTags,
-    getComponent,
-    useLinkedProfileFilterState,
-    useGetProfile,
-    useLoadProfileBody,
-    parseBlockLinks
+	Profile,
+	website,
+	stripHTMLTags,
+	getComponent,
+	useLinkedProfileFilterState,
+	useGetProfile,
+	useLoadProfileBody,
+	parseBlockLinks
 };

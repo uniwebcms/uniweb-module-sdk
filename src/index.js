@@ -9,14 +9,14 @@ import ProfileFilter from './ProfileFilter';
 import SearchBox from './SearchBox';
 // import ProfileArticles from './components/ProfileArticles';
 import {
-    Profile,
-    website,
-    stripHTMLTags,
-    useGetProfile,
-    useLoadProfileBody,
-    useLinkedProfileFilterState,
-    parseBlockLinks,
-    getComponent
+	Profile,
+	website,
+	stripHTMLTags,
+	useGetProfile,
+	useLoadProfileBody,
+	useLinkedProfileFilterState,
+	parseBlockLinks,
+	getComponent
 } from './helper';
 
 // methods or objects from uniweb engine
@@ -25,24 +25,24 @@ export { Profile, website, parseLinksInArticle, getFirstElementInMap };
 
 // React components
 export {
-    ProfileImage,
-    PopoverMenu,
-    Link,
-    DocumentImage,
-    Blog,
-    Badge,
-    ProfileFilter,
-    Map,
-    // ProfileArticles,
-    SearchBox
+	ProfileImage,
+	PopoverMenu,
+	Link,
+	DocumentImage,
+	Blog,
+	Badge,
+	ProfileFilter,
+	Map,
+	// ProfileArticles,
+	SearchBox
 };
 
 // methods from local helper
 export {
-    stripHTMLTags,
-    useGetProfile,
-    useLoadProfileBody,
-    useLinkedProfileFilterState,
-    parseBlockLinks,
-    getComponent
+	stripHTMLTags,
+	useGetProfile,
+	useLoadProfileBody,
+	useLinkedProfileFilterState,
+	parseBlockLinks,
+	getComponent
 };

@@ -1,11 +1,17 @@
+/**
+ * Create a Badge component.
+ * @module Badge
+ */
+
 import React from 'react';
 
 /**
+ * Show a simple badge with a label.
  *
- * @param {Object} props - The component properties.
- * @param {string} props.color - The primary color of the badge.
- * @param {string} props.className - Additional tailwind class names.
- * @param {ReactNode|ReactNodeArray} props.children - The contents for the Badge container.
+ * @component Badge
+ * @prop {string} color - The primary color of the badge.
+ * @prop {string} className - Additional tailwind class names.
+ * @prop {ReactNode|ReactNodeArray} children - The contents for the Badge container.
  * @returns {function} A react component.
  */
 export default function Badge({ children, color = 'green', className = '' }) {
