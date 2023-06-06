@@ -10,14 +10,14 @@ import ProfileSorter from './ProfileSorter';
 import SearchBox from './SearchBox';
 // import ProfileArticles from './components/ProfileArticles';
 import {
-    Profile,
-    website,
-    stripHTMLTags,
-    useGetProfile,
-    useLoadProfileBody,
-    useLinkedProfileFilterState,
-    parseBlockLinks,
-    getComponent
+	Profile,
+	website,
+	stripHTMLTags,
+	useGetProfile,
+	useLoadProfileBody,
+	useLinkedProfileFilterState,
+	parseBlockLinks,
+	getComponent
 } from './helper';
 
 // methods or objects from uniweb engine
@@ -41,10 +41,10 @@ export {
 
 // methods from local helper
 export {
-    stripHTMLTags,
-    useGetProfile,
-    useLoadProfileBody,
-    useLinkedProfileFilterState,
-    parseBlockLinks,
-    getComponent
+	stripHTMLTags,
+	useGetProfile,
+	useLoadProfileBody,
+	useLinkedProfileFilterState,
+	parseBlockLinks,
+	getComponent
 };

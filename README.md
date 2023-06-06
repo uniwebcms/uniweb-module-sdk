@@ -20,27 +20,71 @@ yarn add @uniwebcms/module-sdk
 
 ## Usage
 
-#### DocumentImage
+Read the [API reference](docs/api.md) to learn about the components and functions offered by the SDK.
 
-The `DocumentImage` component is used to render an element based on the uploaded assets of the `file` field in a `profile` section. The asset can be either an image or a file. In the case of a regular file, this component renders an element with preview functionality if applicable. It accepts the following props:
+<!-- #### Link
 
--   `contentType` - The content type of a profile (e.g., 'members', 'units')
--   `viewType` - The view type of a profile (e.g., 'profile')
--   `contentId` - The ID of a profile
--   `value` - The value of the file field
--   `activeLang` - Specify the language of the value if it is a `multi-lingual` field
--   `className` - The `className` of the element
--   `filePreview` - A boolean indicate weather show file preview or not
+The `Link` component is used to create link element. It accepts the following props:
 
-Here's an example of how to use the `DocumentImage` component:
+-   `to` - A Profile object or a string href to use as the destination.
+-   `external` - Optional. A boolean explicitly indicating whether the link us to open in a different webpage.
+-   `ariaLabel` - The `aria-label` property of the link
+-   `title` - The `title` property of the link
+
+> It also accepts the standard properties of React element (e.g., 'className', 'target', 'children', 'onClick')
+
+Here's an example of how to use the `PopoverMenu` component:
 
 ```jsx
-import { DocumentImage } from '@uniwebcms/module-sdk';
+import { Link } from '@uniwebcms/module-sdk';
 
 function MyComponent() {
     return (
         <div>
-            <DocumentImage contentType='docufolio' viewType='profile' contentId='1' value='_fieldValue' activeLang='en' className='xxx' filePreview={true} />
+            <Link to='https:...' className='xxx'>
+                <span>A link</span>
+            </Link>
+        </div>
+    );
+}
+```
+
+#### ProfileImage
+
+The `ProfileImage` component is used to display a banner or avatar image of a `profile` element based on the provided parameters. It accepts the following props:
+
+-   `profile` - A profile object.
+-   `type` - the type of the image (e.g., 'banner', 'avatar')
+
+Here's an example of how to use the `ProfileImage` component:
+
+```jsx
+import { ProfileImage } from '@uniwebcms/module-sdk';
+
+function MyComponent() {
+    return (
+        <div>
+            <ProfileImage profile={profile} type='banner' />
+        </div>
+    );
+}
+```
+
+#### Blog
+
+The `Blog` component is used to render a page that displays a list of articles and views the content of an individual article. It accepts all the props came from parent element and the following extra props:
+
+-   `recommenderMode` - The mode that indicates the display of either `latest blogs` or `relative blogs` under the content of a single blog (e.g., 'latest', 'relative')
+
+Here's an example of how to use the `Blogs` component:
+
+```jsx
+import { Blogs } from '@uniwebcms/module-sdk';
+
+function MyComponent(props) {
+    return (
+        <div>
+            <Blog {...props} recommenderMode='relative' />
         </div>
     );
 }
@@ -73,72 +117,25 @@ function MyComponent() {
 }
 ```
 
-#### SmartLink
+#### DocumentImage
 
-The `SmartLink` component is used to create link element. It accepts the following props:
+The `DocumentImage` component is used to render an element based on the uploaded assets of the `file` field in a `profile` section. The asset can be either an image or a file. In the case of a regular file, this component renders an element with preview functionality if applicable. It accepts the following props:
 
--   `to` - The href of the link
--   `external` - Optional. A boolean explicitly indicating whether this link points outside of `uniweb`
--   `ariaLabel` - The `aria-label` property of the link
--   `title` - The `title` property of the link
+-   `profile` - A Profile object.
+-   `value` - The value of the file field to render.
+-   `activeLang` - Specify the language of the value if it is a `multi-lingual` field.
+-   `className` - The `className` of the element.
+-   `filePreview` - A boolean indicate weather show file preview or not.
 
-> It also accepts the standard properties of React element (e.g., 'className', 'target', 'children', 'onClick')
-
-Here's an example of how to use the `PopoverMenu` component:
+Here's an example of how to use the `DocumentImage` component:
 
 ```jsx
-import { SmartLink } from '@uniwebcms/module-sdk';
+import { DocumentImage } from '@uniwebcms/module-sdk';
 
 function MyComponent() {
     return (
         <div>
-            <SmartLink to='https:...' className='xxx'>
-                <span>A link</span>
-            </SmartLink>
-        </div>
-    );
-}
-```
-
-#### ProfileImage
-
-The `ProfileImage` component is used to display a banner or avatar image of a `profile` element based on the provided parameters. It accepts the following props:
-
--   `contentType` - The content type of a profile (e.g., 'members', 'units')
--   `viewType` - The view type of a profile (e.g., 'profile')
--   `contentId` - the ID of a profile
--   `version` - the version of the image
--   `type` - the type of the image (e.g., 'banner', 'avatar')
-
-Here's an example of how to use the `ProfileImage` component:
-
-```jsx
-import { ProfileImage } from '@uniwebcms/module-sdk';
-
-function MyComponent() {
-    return (
-        <div>
-            <ProfileImage contentType='members' viewType='profile' contentId='1' version='123' type='banner' />
-        </div>
-    );
-}
-```
-
-#### Blogs
-
-The `Blogs` component is used to render a page that displays a list of articles and views the content of an individual article. It accepts all the props came from parent element and the following extra props:
-
--   `recommenderMode` - The mode that indicates the display of either `latest blogs` or `relative blogs` under the content of a single blog (e.g., 'latest', 'relative')
-
-Here's an example of how to use the `Blogs` component:
-
-```jsx
-import { Blogs } from '@uniwebcms/module-sdk';
-
-function MyComponent(props) {
-    return (
-        <div>
-            <Blogs {...props} recommenderMode='relative' />
+            <DocumentImage contentType='docufolio' viewType='profile' contentId='1' value='_fieldValue' activeLang='en' className='xxx' filePreview={true} />
         </div>
     );
 }
@@ -185,7 +182,9 @@ getProfileSection('_contentType', '_contentId', '_sectionId');
 getListProfileItems('_listId');
 
 getProfileTypes('_contentType', '_viewType');
-```
+``` -->
+
+* * *
 
 ## License
 
