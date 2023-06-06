@@ -33,6 +33,110 @@ The complete set of sections of a profile are collectively referrer to as the **
 The body of a profile can be loaded asynchronously when needed with the SDK hook `useLoadProfileBody`. In this example, we load the body of each project profile so that we can access the `description` field in the `project_description` section.
 
 ```javascript
+import React from 'react';
+import {
+    Link,
+    ProfileImage,
+    stripHTMLTags,
+    ProfileFilter,
+    ProfileSorter,
+    useLoadProfileBody,
+    useLinkedProfileFilterState,
+} from '@uniwebcms/module-sdk';
+import Banner from './Banner';
+
+/**
+ * Render basic project profile information as a card.
+ *
+ * @prop {Profile} project - A project profile.
+ * @returns {function} - A project renderer.
+ */
+const Project = ({ project }) => {
+    let description = '';
+
+    // Call the SDK hook to get the full data of a profile so that we can call at() on it to
+    // get data that is not located in the profile head.
+    if (useLoadProfileBody(project)) {
+        // The description field requires the full profile data. Here we can choose to return null if
+        // hasData is false, or we can set the description to the empty string, render what we have in
+        // the profile head, and then let the component rerender when the hasData state becomes true.
+        description = project.at('project_description/description');
+    }
+
+    // The basic profile info is always available from the partial profile data.
+    const { title, subtitle } = project.getBasicInfo();
+
+    return (
+        <Link
+            profile={project}
+            className="h-72 overflow-hidden group hover:bg-gray-50 rounded-xl px-6 py-4"
+        >
+            <div className="flex justify-between">
+                <div className="w-20 h-20 rounded-full overflow-hidden">
+                    <ProfileImage profile={project} type="banner" />
+                </div>
+            </div>
+
+            <div className="text-xl font-medium text-gray-700 truncate mt-5">
+                {title}
+            </div>
+            {subtitle ? (
+                <div className="text-lg font-normal text-gray-500 truncate mt-2">
+                    {subtitle}
+                </div>
+            ) : null}
+            <div
+                className="text-base text-gray-600 mt-1 line-clamp-3"
+                title={stripHTMLTags(description)}
+                dangerouslySetInnerHTML={{ __html: description }}
+            ></div>
+        </Link>
+    );
+};
+
+/**
+ * Render a list of project cards that belong to a given group profile.
+ *
+ * @prop {Profile} profile - The main profile containing a list of projects.
+ * @prop {Profile} page - The current website page.
+ * @returns {function} - Renderer of a list of project cards.
+ */
+export default function Projects({ profile, page }) {
+    const pageTitle = page.getPageTitle();
+
+    const [filter, setFilter] = useLinkedProfileFilterState(
+        profile,
+        'project/profile',
+        'group_projects',
+        'project'
+    );
+
+    // Get the list of filtered and sorted projects linked to the group profile.
+    const { filtered } = filter;
+
+    // Use the banner image of the group profile to decorate the page.
+    return (
+        <>
+            <Banner title={pageTitle} profile={profile} />
+            <section className="wrapper">
+                <div className="flex justify-end">
+                    <div className="flex space-x-1 items-center">
+                        <ProfileFilter filter={filter} setFilter={setFilter}>
+                            <ProfileFilter.Search />
+                            <ProfileFilter.Menu />
+                        </ProfileFilter>
+                        <ProfileSorter filter={filter} setFilter={setFilter} />
+                    </div>
+                </div>
+                <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 mt-20 gap-20">
+                    {filtered.map((project) => {
+                        return <Project key={project.key} project={project} />;
+                    })}
+                </div>
+            </section>
+        </>
+    );
+}
 
 ```
 

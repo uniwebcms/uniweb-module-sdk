@@ -43,10 +43,13 @@ so that all of its data can be accessed via the at() method.</p>
 </dd>
 <dt><a href="#useGetProfile">useGetProfile(profileType, contentId)</a> ⇒ <code>Profile</code> | <code>false</code></dt>
 <dd><p>Create a React state-effect combo to trigger the initialization of a profile
-so that all of its data can be accessed via the at() method.</p>
+so that all of its data can be accessed via the at() method. It is different from
+useLoadProfileBody() in that it takes a profileType and contentId as parameters
+instead of a profile object.</p>
 </dd>
-<dt><a href="#useLinkedProfileFilterState">useLinkedProfileFilterState(profile, profileType, sectionName, fieldName)</a> ⇒ <code>bool</code></dt>
-<dd><p>Filter linked profiles.</p>
+<dt><a href="#useLinkedProfileFilterState">useLinkedProfileFilterState(profile, profileType, sectionName, fieldName)</a> ⇒ <code>Array</code></dt>
+<dd><p>Get a list of project profiles linked to a given profile and a function to update the filter
+and sorting state of the list.</p>
 </dd>
 <dt><a href="#parseBlockLinks">parseBlockLinks(block)</a></dt>
 <dd></dd>
@@ -273,7 +276,9 @@ so that all of its data can be accessed via the at() method.
 
 ## useGetProfile(profileType, contentId) ⇒ <code>Profile</code> \| <code>false</code>
 Create a React state-effect combo to trigger the initialization of a profile
-so that all of its data can be accessed via the at() method.
+so that all of its data can be accessed via the at() method. It is different from
+useLoadProfileBody() in that it takes a profileType and contentId as parameters
+instead of a profile object.
 
 **Kind**: global function  
 **Returns**: <code>Profile</code> \| <code>false</code> - Returns the profile object once it is in a complete (ready) state.
@@ -286,17 +291,21 @@ Returns false while the profile data is being fetched.
 
 <a name="useLinkedProfileFilterState"></a>
 
-## useLinkedProfileFilterState(profile, profileType, sectionName, fieldName) ⇒ <code>bool</code>
-Filter linked profiles.
+## useLinkedProfileFilterState(profile, profileType, sectionName, fieldName) ⇒ <code>Array</code>
+Get a list of project profiles linked to a given profile and a function to update the filter
+and sorting state of the list.
 
 **Kind**: global function  
+**Returns**: <code>Array</code> - - A 2D array with the current filter state and a function to update the state. The state is an
+Object with several properties. The `filtered` property of the state is an array of Profile objects with the
+ordered list of profiles to render.  
 
-| Param | Type |
-| --- | --- |
-| profile | <code>Profile</code> | 
-| profileType | <code>string</code> | 
-| sectionName | <code>string</code> \| <code>null</code> | 
-| fieldName | <code>string</code> \| <code>null</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| profile | <code>Profile</code> | The source profile. |
+| profileType | <code>string</code> | The profile type of the linked profiles to return. |
+| sectionName | <code>string</code> \| <code>null</code> | The section name in the source profile that has the list of linked profiles. |
+| fieldName | <code>string</code> \| <code>null</code> | The field name in `sectionName` that stores the target linked-profile reference. |
 
 <a name="parseBlockLinks"></a>
 
