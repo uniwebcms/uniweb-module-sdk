@@ -37,11 +37,11 @@ import React from 'react';
 import {
     Link,
     ProfileImage,
-    stripHTMLTags,
     ProfileFilter,
     ProfileSorter,
     useLoadProfileBody,
     useLinkedProfileFilterState,
+    stripHTMLTags,
 } from '@uniwebcms/module-sdk';
 import Banner from './Banner';
 
