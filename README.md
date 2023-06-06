@@ -102,8 +102,8 @@ const Project = ({ project }) => {
  * @returns {function} - Renderer of a list of project cards.
  */
 export default function Projects({ profile, page }) {
-    const pageTitle = page.getPageTitle();
-
+    // Use the provided custom React hook to get a list of profiles
+    // that can be filtered and sorted by the user.
     const [filter, setFilter] = useLinkedProfileFilterState(
         profile,
         'project/profile',
@@ -113,6 +113,9 @@ export default function Projects({ profile, page }) {
 
     // Get the list of filtered and sorted projects linked to the group profile.
     const { filtered } = filter;
+
+    // Use the page of the title as the title of the header image.
+    const pageTitle = page.getPageTitle();
 
     // Use the banner image of the group profile to decorate the page.
     return (
@@ -137,7 +140,6 @@ export default function Projects({ profile, page }) {
         </>
     );
 }
-
 ```
 
 <!-- #### Link
