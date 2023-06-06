@@ -22,11 +22,15 @@ yarn add @uniwebcms/module-sdk
 
 Read the [API reference](docs/api.md) to learn about the components and functions offered by the SDK.
 
-## Example
+## Example: Rendering a list of profiles linked to a source profile
 
-Render a webpage that offers functionality to search, filter and sort **project cards** linked to a given a **source group profile** `profile`. The managing of rendering states is done with the SDK hook `useLinkedProfileFilterState`, which returns a list of project profiles linked to the source group profile.
+In this example we render a webpage that offers functionality to search, filter and sort **project cards** linked to a given a **source group profile** `profile`. The managing of rendering states is done with the SDK hook `useLinkedProfileFilterState`, which returns a list of project profiles linked to the source group profile and a function to update their filtering state.
 
-In this example, the `description` value of a project is not included in the basic information of a project profile. The description value is asynchronously fetched via the provided state/effect hook `useLoadProfileBody`.
+Our goal in this example is to render project cards showing the description of each project, but the returned profile objects only include **partial information** about each project. In particular, each project profile object has the `title` and `subtitle` of the project but not its `description`. We address this limitation by  adding extra logic to fetch the **full information** of each project profile.
+
+The complete set of sections of a profile are collectively referrer to as the **body** of the profile. The profile objects obtained from `useLinkedProfileFilterState` do not include profile body information. They only contain basic information about each profile, such as standard `title` and `subtitle` values as well as the complete top section of the profile, which is known as the **head** of the profile. In this example, the `description` value is not located in the head section so we need to get the body of the profile to be able to access it.
+
+The body of a profile can be loaded asynchronously when needed with the SDK hook `useLoadProfileBody`. In this example, we load the body of each project profile so that we can access the `description` field in the `project_description` section.
 
 ```javascript
 
