@@ -15,11 +15,9 @@ const SimpleLink = getComponent(null, 'SimpleLink');
  * @example
  * function MyComponent() {
  *   return (
- *       <div>
- *           <Link to='https:...' className='xxx'>
- *               <span>A link</span>
- *           </Link>
- *       </div>
+ *      <Link to='https:...' className='xxx'>
+ *          <span>A link</span>
+ *      </Link>
  *   );
  * }
  *

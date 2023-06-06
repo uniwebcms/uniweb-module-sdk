@@ -131,11 +131,9 @@ link to a given target page.
 ```js
 function MyComponent() {
   return (
-      <div>
-          <Link to='https:...' className='xxx'>
-              <span>A link</span>
-          </Link>
-      </div>
+     <Link to='https:...' className='xxx'>
+         <span>A link</span>
+     </Link>
   );
 }
 ```
