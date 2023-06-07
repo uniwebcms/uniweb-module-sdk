@@ -51,8 +51,6 @@ instead of a profile object.</p>
 <dd><p>Get a list of project profiles linked to a given profile and a function to update the filter
 and sorting state of the list.</p>
 </dd>
-<dt><a href="#parseBlockLinks">parseBlockLinks(block)</a></dt>
-<dd></dd>
 </dl>
 
 <a name="module_Badge"></a>
@@ -306,13 +304,4 @@ ordered list of profiles to render.
 | profileType | <code>string</code> | The profile type of the linked profiles to return. |
 | sectionName | <code>string</code> \| <code>null</code> | The section name in the source profile that has the list of linked profiles. |
 | fieldName | <code>string</code> \| <code>null</code> | The field name in `sectionName` that stores the target linked-profile reference. |
-
-<a name="parseBlockLinks"></a>
-
-## parseBlockLinks(block)
-**Kind**: global function  
-
-| Param | Type |
-| --- | --- |
-| block | <code>Object</code> | 
 
