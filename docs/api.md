@@ -25,6 +25,9 @@
 <dt><a href="#module_ProfileImage">ProfileImage</a></dt>
 <dd><p>Render the avatar or banner of a profile.</p>
 </dd>
+<dt><a href="#module_ProfileSorter">ProfileSorter</a></dt>
+<dd><p>Sort the profile lists.</p>
+</dd>
 <dt><a href="#module_SearchBox">SearchBox</a></dt>
 <dd><p>Enable website search.</p>
 </dd>
@@ -74,6 +77,16 @@ Show a simple badge with a label.
 | className | <code>string</code> | Additional tailwind class names. |
 | children | <code>ReactNode</code> \| <code>ReactNodeArray</code> | The contents for the Badge container. |
 
+**Example**  
+```js
+function MyComponent() {
+  return (
+      <Badge color="green" className="hover:text-red-200">
+			{label}
+		 </Badge>
+  );
+}
+```
 <a name="module_Blog"></a>
 
 ## Blog
@@ -153,15 +166,29 @@ Create a Map.
 **Component**: Map  
 **Properties**
 
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| APIKey | <code>string</code> |  | - |
-| center | <code>string</code> |  | - |
-| zoom | <code>string</code> |  | - |
-| markerPositions | <code>Array</code> |  | - |
-| [height] | <code>string</code> | <code>&quot;600px&quot;</code> | - |
-| [width] | <code>string</code> | <code>&quot;800px&quot;</code> | - |
+| Name | Type | Description |
+| --- | --- | --- |
+| APIKey | <code>string</code> | - |
+| center | <code>object</code> | The position of the map center |
+| zoom | <code>number</code> | The initial zoom level |
+| markerPositions | <code>Array.&lt;object&gt;</code> | The markers' position |
+| height | <code>string</code> | The height of the map element |
+| [width] | <code>string</code> | The width of the map element |
 
+**Example**  
+```js
+function MyComponent() {
+   return (
+      <Map
+         APIKey="xxx"
+         center={{lat:40, lng:50}}
+         zoom={4}
+         markerPositions={[{lat:10,lng:20}]}
+         width='800px'
+         height='600px' />
+   );
+}
+```
 <a name="module_PopoverMenu"></a>
 
 ## PopoverMenu
@@ -169,21 +196,28 @@ PopoverMenu for user selections.
 
 
 * [PopoverMenu](#module_PopoverMenu)
-    * [module.exports(props)](#exp_module_PopoverMenu--module.exports) ⇒ <code>function</code> ⏏
+    * [module.exports(trigger, triggerClassName, triggerStyle, options, menuClassName, width, zIndex, position)](#exp_module_PopoverMenu--module.exports) ⇒ <code>function</code> ⏏
         * [.usePopper()](#module_PopoverMenu--module.exports.usePopper)
 
 <a name="exp_module_PopoverMenu--module.exports"></a>
 
-### module.exports(props) ⇒ <code>function</code> ⏏
+### module.exports(trigger, triggerClassName, triggerStyle, options, menuClassName, width, zIndex, position) ⇒ <code>function</code> ⏏
 Render a menu with options to be selected by the user.
 
 **Kind**: Exported function  
 **Returns**: <code>function</code> - A React component.  
 **Component**: PopoverMenu  
 
-| Param | Type |
-| --- | --- |
-| props | <code>Object</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| trigger | <code>ReactElement</code> | The Trigger element |
+| triggerClassName | <code>string</code> | The class name that apply to the trigger element |
+| triggerStyle | <code>CSSStyleRule</code> | The style that apply to the trigger element |
+| options | <code>Array.&lt;ReactElement&gt;</code> | The option elements in the dropdown menu |
+| menuClassName | <code>string</code> | The class name that apply to the menu element |
+| width | <code>string</code> | The menu width |
+| zIndex | <code>number</code> | The zIndex value of the menu |
+| position | <code>string</code> | The position of the menu relative to the trigger |
 
 **Example**  
 ```js
@@ -191,9 +225,13 @@ function MyComponent() {
   const options = [<div>Option 1</div>, <div>Option 2</div>, <div>Option 2</div>];
 
    return (
-       <div>
-           <PopoverMenu trigger={<button>Open Menu</button>} options={options} triggerClassName='px-2 py-1 text-blue-600 text-sm border rounded' position='top-0 left-4' width='200px' zIndex='10' />
-       </div>
+      <PopoverMenu
+         trigger={<div>Open Menu</div>}
+         options={options}
+         triggerClassName='px-2 py-1 text-blue-600 text-sm border rounded'
+         position='top-0 left-4'
+         width='120px'
+         zIndex='10' />
    );
 }
 ```
@@ -208,6 +246,86 @@ Example implementation to use Popper: https://popper.js.org/
 ## ProfileFilter
 Filter profile lists.
 
+
+* [ProfileFilter](#module_ProfileFilter)
+    * [module.exports()](#exp_module_ProfileFilter--module.exports) ⇒ <code>function</code> ⏏
+        * _static_
+            * [.Search](#module_ProfileFilter--module.exports.Search) ⇒ <code>function</code>
+        * _inner_
+            * [~Menu()](#module_ProfileFilter--module.exports..Menu) ⇒ <code>function</code>
+
+<a name="exp_module_ProfileFilter--module.exports"></a>
+
+### module.exports() ⇒ <code>function</code> ⏏
+A wrapper component for filter Search and Menu
+
+**Kind**: Exported function  
+**Returns**: <code>function</code> - A wrapper component.  
+**Component**: ProfileFilter  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| filter | <code>object</code> | The filter state which return by useLinkedProfileFilterState |
+| setFilter | <code>function</code> | The set method to update state, return by useLinkedProfileFilterState |
+
+**Example**  
+```js
+function MyComponent() {
+  return (
+      <ProfileFilter filter={filter} setFilter={setFilter}>
+         <ProfileFilter.Search/>
+         <ProfileFilter.Menu/>
+      </ProfileFilter>
+  );
+}
+```
+<a name="module_ProfileFilter--module.exports.Search"></a>
+
+#### module.exports.Search ⇒ <code>function</code>
+A Search widget to perform searching profiles by title
+
+**Kind**: static constant of [<code>module.exports</code>](#exp_module_ProfileFilter--module.exports)  
+**Returns**: <code>function</code> - A search component.  
+**Component**: ProfileFilter.Search  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| filter | <code>Object</code> | The filter state |
+| setFilter | <code>function</code> | The set method to update state |
+
+**Example**  
+```js
+function MyComponent() {
+  return (
+      <ProfileFilter.Search filter={filter} setFilter={setFilter} />
+  );
+}
+```
+<a name="module_ProfileFilter--module.exports..Menu"></a>
+
+#### module.exports~Menu() ⇒ <code>function</code>
+A filter widget to perform filter profiles using a drop down menu
+
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_ProfileFilter--module.exports)  
+**Returns**: <code>function</code> - A filter component.  
+**Component**: ProfileFilter.Menu  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| filter | <code>Object</code> | The filter state |
+| setFilter | <code>function</code> | The set method to update state |
+
+**Example**  
+```js
+function MyComponent() {
+  return (
+      <ProfileFilter.Menu filter={filter} setFilter={setFilter} />
+  );
+}
+```
 <a name="module_ProfileImage"></a>
 
 ## ProfileImage
@@ -240,11 +358,69 @@ function MyComponent() {
   );
 }
 ```
+<a name="module_ProfileSorter"></a>
+
+## ProfileSorter
+Sort the profile lists.
+
+<a name="exp_module_ProfileSorter--module.exports"></a>
+
+### module.exports() ⇒ <code>function</code> ⏏
+A sorting widget to sort profiles.
+
+**Kind**: Exported function  
+**Returns**: <code>function</code> - A Sorting component.  
+**Component**: ProfileSorter  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| filter | <code>object</code> | The filter state which return by useLinkedProfileFilterState |
+| setFilter | <code>function</code> | The set method to update state, return by useLinkedProfileFilterState |
+
+**Example**  
+```js
+function MyComponent() {
+  return (
+      <ProfileSorter filter={filter} setFilter={setFilter} />
+  );
+}
+```
 <a name="module_SearchBox"></a>
 
 ## SearchBox
 Enable website search.
 
+<a name="exp_module_SearchBox--module.exports"></a>
+
+### module.exports() ⇒ <code>function</code> ⏏
+A search box
+
+**Kind**: Exported function  
+**Returns**: <code>function</code> - A search component.  
+**Component**: SearchBox  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| placeholder | <code>string</code> | The placeholder value |
+| filters | <code>object</code> | The filter state contains the searchText value |
+| handleSearch | <code>function</code> | The method handle on search value change |
+| live | <code>bool</code> | A flag indicate if the handleSearch will be trigger every changes or only when enter click |
+
+**Example**  
+```js
+function MyComponent() {
+  return (
+      <SearchBox
+			placeholder={"search"}
+			filters={{searchText:'xxx'}}
+			handleSearch={(newValue)=>{}}
+			live={true}
+		 />
+  );
+}
+```
 <a name="stripHTMLTags"></a>
 
 ## stripHTMLTags(htmlString) ⇒ <code>string</code>

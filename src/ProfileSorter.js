@@ -1,9 +1,30 @@
+/**
+ * Sort the profile lists.
+ * @module ProfileSorter
+ */
+
 import React from 'react';
 import { BiSort } from 'react-icons/bi';
 import { Popover } from '@headlessui/react';
 import { usePopper, Portal } from './PopoverMenu';
 import { website } from './helper';
 
+/**
+ *
+ * A sorting widget to sort profiles.
+ *
+ * @example
+ * function MyComponent() {
+ *   return (
+ *       <ProfileSorter filter={filter} setFilter={setFilter} />
+ *   );
+ * }
+ *
+ * @component ProfileSorter
+ * @prop {object} filter - The filter state which return by useLinkedProfileFilterState
+ * @prop {function} setFilter - The set method to update state, return by useLinkedProfileFilterState
+ * @returns {function} A Sorting component.
+ */
 export default function ProfileSorter(props) {
     const {
         filter: { selection },

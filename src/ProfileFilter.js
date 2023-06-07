@@ -9,6 +9,22 @@ import { HiFilter } from 'react-icons/hi';
 import { usePopper, Portal } from './PopoverMenu';
 import SearchBox from './SearchBox';
 
+/**
+ *
+ * A filter widget to perform filter profiles using a drop down menu
+ *
+ * @example
+ * function MyComponent() {
+ *   return (
+ *       <ProfileFilter.Menu filter={filter} setFilter={setFilter} />
+ *   );
+ * }
+ *
+ * @component ProfileFilter.Menu
+ * @prop {Object} filter - The filter state
+ * @prop {function} setFilter - The set method to update state
+ * @returns {function} A filter component.
+ */
 function Menu(props) {
     const {
         filter: { filters, selection },
@@ -144,6 +160,22 @@ function Menu(props) {
     }
 }
 
+/**
+ *
+ * A Search widget to perform searching profiles by title
+ *
+ * @example
+ * function MyComponent() {
+ *   return (
+ *       <ProfileFilter.Search filter={filter} setFilter={setFilter} />
+ *   );
+ * }
+ *
+ * @component ProfileFilter.Search
+ * @prop {Object} filter - The filter state
+ * @prop {function} setFilter - The set method to update state
+ * @returns {function} A search component.
+ */
 export const Search = (props) => {
     const {
         filter: { selection },
@@ -162,6 +194,25 @@ export const Search = (props) => {
     return <SearchBox filters={{ searchText }} handleSearch={handleSearch} />;
 };
 
+/**
+ *
+ * A wrapper component for filter Search and Menu
+ *
+ * @example
+ * function MyComponent() {
+ *   return (
+ *       <ProfileFilter filter={filter} setFilter={setFilter}>
+ *          <ProfileFilter.Search/>
+ *          <ProfileFilter.Menu/>
+ *       </ProfileFilter>
+ *   );
+ * }
+ *
+ * @component ProfileFilter
+ * @prop {object} filter - The filter state which return by useLinkedProfileFilterState
+ * @prop {function} setFilter - The set method to update state, return by useLinkedProfileFilterState
+ * @returns {function} A wrapper component.
+ */
 export default function ProfileFilter({
     as: Component = 'div',
     className = 'flex space-x-2.5 items-center',
