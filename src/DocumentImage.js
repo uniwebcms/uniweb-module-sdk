@@ -1,61 +1,56 @@
-/**
- * Create a DocumentImage component.
- * @module DocumentImage
- */
-
 import React, { useCallback, useEffect, useState } from 'react';
 import { Profile } from './helper';
 
 const Image = (props) => {
-	const {
-		contentType = 'docufolio',
-		contentId,
-		value,
-		alt = '',
-		className = 'w-full h-full object-cover',
-		filePreview = false,
-		externalSrc = ''
-	} = props;
+    const {
+        contentType = 'docufolio',
+        contentId,
+        value,
+        alt = '',
+        className = 'w-full h-full object-cover',
+        filePreview = false,
+        externalSrc = ''
+    } = props;
 
-	const profile = Profile.newProfile(contentType, contentId);
+    const profile = Profile.newProfile(contentType, contentId);
 
-	const { href, src, altText } = profile.getAssetInfo(value, filePreview, alt);
+    const { href, src, altText } = profile.getAssetInfo(value, filePreview, alt);
 
-	const [imgSrc, setImgSrc] = useState(src);
-	const [isFallback, setIsFallback] = useState(false);
+    const [imgSrc, setImgSrc] = useState(src);
+    const [isFallback, setIsFallback] = useState(false);
 
-	useEffect(() => {
-		setImgSrc(src);
-		setIsFallback(false);
-	}, [src]);
+    useEffect(() => {
+        setImgSrc(src);
+        setIsFallback(false);
+    }, [src]);
 
-	const fetchImgSrc = useCallback(() => {
-		fetch(href)
-			.then((res) => res.json())
-			.then((res) => {
-				setIsFallback(true);
-				setImgSrc(res);
-			});
-	}, [href]);
+    const fetchImgSrc = useCallback(() => {
+        fetch(href)
+            .then((res) => res.json())
+            .then((res) => {
+                setIsFallback(true);
+                setImgSrc(res);
+            });
+    }, [href]);
 
-	return (
-		<img
-			src={externalSrc || imgSrc}
-			className={className}
-			alt={altText}
-			onError={(event) => {
-				if (Profile.editableMode() && !isFallback) fetchImgSrc();
-			}}
-		/>
-	);
+    return (
+        <img
+            src={externalSrc || imgSrc}
+            className={className}
+            alt={altText}
+            onError={(event) => {
+                if (Profile.editableMode() && !isFallback) fetchImgSrc();
+            }}
+        />
+    );
 };
 
 export default function DocumentImage(props) {
-	const { value } = props;
+    const { value } = props;
 
-	if (!value) return null;
+    if (!value) return null;
 
-	return <Image {...props}></Image>;
+    return <Image {...props}></Image>;
 }
 
 /**

@@ -1,6 +1,6 @@
 {
     "name": "@uniwebcms/module-sdk",
-    "version": "1.3.7",
+    "version": "1.3.8",
     "description": "",
     "main": "dist/bundle.js",
     "files": [
@@ -9,7 +9,7 @@
     ],
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "webpack --mode=production",
+        "build": "webpack --mode=production --watch",
         "reinstall": "rm -rf ./node_modules && npm i",
         "rebuild": "rm -rf ./dist && npm run build",
         "docs": "jsdoc2md src/*.js > docs/api.md"

@@ -179,7 +179,8 @@ function Menu(props) {
 export const Search = (props) => {
     const {
         filter: { selection },
-        setFilter
+        setFilter,
+        ...other
     } = props;
 
     const { searchText = '' } = selection;
@@ -191,7 +192,7 @@ export const Search = (props) => {
         });
     };
 
-    return <SearchBox filters={{ searchText }} handleSearch={handleSearch} />;
+    return <SearchBox filters={{ searchText }} handleSearch={handleSearch} {...other} />;
 };
 
 /**
