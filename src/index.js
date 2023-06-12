@@ -8,7 +8,6 @@ import Map from './Map';
 import ProfileFilter from './ProfileFilter';
 import ProfileSorter from './ProfileSorter';
 import SearchBox from './SearchBox';
-// import ProfileArticles from './components/ProfileArticles';
 import {
     Profile,
     website,
@@ -33,7 +32,6 @@ export {
     Badge,
     ProfileFilter,
     Map,
-    // ProfileArticles,
     SearchBox,
     ProfileSorter
 };
