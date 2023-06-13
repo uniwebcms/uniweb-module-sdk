@@ -3,10 +3,10 @@
  * @module Link
  */
 
-import React, { Suspense } from 'react';
-import { getComponent } from './helper';
+import React from 'react';
+import { website } from './helper';
 
-const SimpleLink = getComponent(null, 'SimpleLink');
+const { Link } = website.routingComponents;
 
 /**
  * Create a React DOM router Link that wraps content that functions as a
@@ -36,10 +36,6 @@ const SimpleLink = getComponent(null, 'SimpleLink');
  * @prop {ReactNode|ReactNodeArray} children - The contents for the Link container.
  * @returns {function} A Link component.
  */
-export default function Link(props) {
-	return (
-		<Suspense fallback={''}>
-			<SimpleLink {...props} />
-		</Suspense>
-	);
+export default function (props) {
+    return <Link {...props} />;
 }

@@ -6,25 +6,6 @@ const Profile = uniweb.Profile;
 const getComponent = (type, name) => lazy(() => uniweb.getComponent(type, name));
 
 /**
- * Strip html string uses regular expressions;
- * Remove all HTML tags from an HTML string and returns a plain string
- * @param {string} htmlString
- * @returns {string} plainString
- */
-function stripHTMLTags(htmlString) {
-    if (!htmlString || typeof htmlString !== 'string') return '';
-
-    // Remove HTML tags using regular expression
-    const plainString = htmlString.replace(/<[^>]*>/g, '');
-
-    // Decode HTML entities
-    const decodedString = new DOMParser().parseFromString(plainString, 'text/html').body
-        .textContent;
-
-    return decodedString;
-}
-
-/**
  * Create a React state-effect combo to trigger the initialization of a profile
  * so that all of its data can be accessed via the at() method.
  *
@@ -67,7 +48,6 @@ const useLinkedProfileFilterState = function (profile, profileType, sectionName,
 export {
     Profile,
     website,
-    stripHTMLTags,
     getComponent,
     useLinkedProfileFilterState,
     useGetProfile,
