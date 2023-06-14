@@ -1,6 +1,7 @@
 import Link from './Link';
 import Image from './Image';
 import Asset from './Asset';
+import FileLogo from './FileLogo';
 import {
     Profile,
     website,
@@ -15,7 +16,7 @@ const { parseLinksInArticle, getFirstElementInMap } = uniweb.getServices();
 export { Profile, website, parseLinksInArticle, getFirstElementInMap };
 
 // React components
-export { Link, Image, Asset };
+export { Link, Image, Asset, FileLogo };
 
 // methods from local helper
 export { useGetProfile, useLoadProfileBody, useLinkedProfileFilterState, getComponent };
