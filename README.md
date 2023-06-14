@@ -1,8 +1,28 @@
 # Uniweb Module Software Development Kit (SDK)
 
-Uniweb Module SDK is an npm module that provides a set of React components and utility functions that can be used to make it easier to create and manage widgets.
+[Uniweb CMS](https://uniwebcms.com) is a **web engine** with advanced built-in intelligence to manage rich data and build websites from templates. The logic that is necessary for creating the user interface of a website exists at the level of **web components** that are powered by the web engine.
 
-<!-- This module provides five components: `ProfileImage`, `PopoverMenu`, `SmartLink`, `DocumentImage` and `Blogs`. -->
+The integration of custom components into a Uniweb system is done via Webpack Federated Modules. The **Uniweb Module SDK** is a software development kit that provides a thin wrapper around the underlying Uniweb JavaScript engine. The SDK provides a tailored and consistent API layer for the underlying web engine.
+
+The main building blocks provided by the engine fall into two categories: Custom React Hooks and General purpose components.
+
+## Custom React Hooks
+
+- useLoadProfileBody
+- useLinkedProfileFilterState
+- useGetProfile
+
+## General purpose components
+
+- Asset
+- Image
+- Link
+
+By using the SDK, a component creator is freed from having to implement low-level functionality or deal with complex backend requests. Creating a link to a page or fetching an asset become simple tasks when using the SDK. Similarly, when using the Custom React Hooks, a component creator can enjoy a simplified management of rendering states for common use cases.
+
+## Uniweb Components
+
+A Uniweb Component is a React JS component whose props are 4 objets: `profile`, `block`, `page` , and `website`. The `profile` object represents the source data of a website. The `block` object contains the settings for the component, which is considered a **building block** within a webpage. The `page` object provides information about the current webpage being rendered as a sequence of buildign blocks. Finally, the `website` provides information about the entire website. Most components only need to work with the `profile` and `block` props. [Learn more about Uniweb components](docs/components.md)
 
 ## Installation
 
@@ -34,16 +54,10 @@ The body of a profile can be loaded asynchronously when needed with the SDK hook
 
 ```javascript
 import React from 'react';
-import {
-    Link,
-    ProfileImage,
-    ProfileFilter,
-    ProfileSorter,
-    useLoadProfileBody,
-    useLinkedProfileFilterState,
-    stripHTMLTags,
-} from '@uniwebcms/module-sdk';
-import Banner from './Banner';
+import {Link, Image, useLoadProfileBody, useLinkedProfileFilterState} from '@uniwebcms/module-sdk';
+import Filter from './filter'; // example component
+import Sorter from './sorter'; // example component
+import Banner from './banner'; // example component
 
 /**
  * Render basic project profile information as a card.
@@ -73,7 +87,7 @@ const Project = ({ project }) => {
         >
             <div className="flex justify-between">
                 <div className="w-20 h-20 rounded-full overflow-hidden">
-                    <ProfileImage profile={project} type="banner" />
+                    <Image profile={project} type="banner" />
                 </div>
             </div>
 
@@ -87,7 +101,7 @@ const Project = ({ project }) => {
             ) : null}
             <div
                 className="text-base text-gray-600 mt-1 line-clamp-3"
-                title={stripHTMLTags(description)}
+                title={project.stripTags(description)}
                 dangerouslySetInnerHTML={{ __html: description }}
             ></div>
         </Link>
@@ -104,12 +118,7 @@ const Project = ({ project }) => {
 export default function Projects({ profile, page }) {
     // Use the provided custom React hook to get a list of profiles
     // that can be filtered and sorted by the user.
-    const [filter, setFilter] = useLinkedProfileFilterState(
-        profile,
-        'project/profile',
-        'group_projects',
-        'project'
-    );
+    const [filter, setFilter] = useLinkedProfileFilterState(profile, 'project');
 
     // Get the list of filtered and sorted projects linked to the group profile.
     const { filtered } = filter;
@@ -124,11 +133,11 @@ export default function Projects({ profile, page }) {
             <section className="wrapper">
                 <div className="flex justify-end">
                     <div className="flex space-x-1 items-center">
-                        <ProfileFilter filter={filter} setFilter={setFilter}>
-                            <ProfileFilter.Search />
-                            <ProfileFilter.Menu />
-                        </ProfileFilter>
-                        <ProfileSorter filter={filter} setFilter={setFilter} />
+                        <Filter filter={filter} setFilter={setFilter}>
+                            <Filter.Search />
+                            <Filter.Menu />
+                        </Filter>
+                        <Sorter filter={filter} setFilter={setFilter} />
                     </div>
                 </div>
                 <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 mt-20 gap-20">
@@ -142,167 +151,6 @@ export default function Projects({ profile, page }) {
 }
 ```
 
-<!-- #### Link
-
-The `Link` component is used to create link element. It accepts the following props:
-
--   `to` - A Profile object or a string href to use as the destination.
--   `external` - Optional. A boolean explicitly indicating whether the link us to open in a different webpage.
--   `ariaLabel` - The `aria-label` property of the link
--   `title` - The `title` property of the link
-
-> It also accepts the standard properties of React element (e.g., 'className', 'target', 'children', 'onClick')
-
-Here's an example of how to use the `PopoverMenu` component:
-
-```jsx
-import { Link } from '@uniwebcms/module-sdk';
-
-function MyComponent() {
-    return (
-        <div>
-            <Link to='https:...' className='xxx'>
-                <span>A link</span>
-            </Link>
-        </div>
-    );
-}
-```
-
-#### ProfileImage
-
-The `ProfileImage` component is used to display a banner or avatar image of a `profile` element based on the provided parameters. It accepts the following props:
-
--   `profile` - A profile object.
--   `type` - the type of the image (e.g., 'banner', 'avatar')
-
-Here's an example of how to use the `ProfileImage` component:
-
-```jsx
-import { ProfileImage } from '@uniwebcms/module-sdk';
-
-function MyComponent() {
-    return (
-        <div>
-            <ProfileImage profile={profile} type='banner' />
-        </div>
-    );
-}
-```
-
-#### Blog
-
-The `Blog` component is used to render a page that displays a list of articles and views the content of an individual article. It accepts all the props came from parent element and the following extra props:
-
--   `recommenderMode` - The mode that indicates the display of either `latest blogs` or `relative blogs` under the content of a single blog (e.g., 'latest', 'relative')
-
-Here's an example of how to use the `Blogs` component:
-
-```jsx
-import { Blogs } from '@uniwebcms/module-sdk';
-
-function MyComponent(props) {
-    return (
-        <div>
-            <Blog {...props} recommenderMode='relative' />
-        </div>
-    );
-}
-```
-
-#### PopoverMenu
-
-The `PopoverMenu` component is used to create a quick open menu. It accepts the following props:
-
--   `trigger` - The trigger element for the menu
--   `options` - An array of options for the menu
--   `triggerClassName` - The class name of the trigger element
--   `position` - The position property of the opened menu
--   `width` - The width of the opened menu
--   `zIndex` - The `zIndex` property of the opened menu
-
-Here's an example of how to use the `PopoverMenu` component:
-
-```jsx
-import { PopoverMenu } from '@uniwebcms/module-sdk';
-
-function MyComponent() {
-    const options = [<div>Option 1</div>, <div>Option 2</div>, <div>Option 2</div>];
-
-    return (
-        <div>
-            <PopoverMenu trigger={<button>Open Menu</button>} options={options} triggerClassName='px-2 py-1 text-blue-600 text-sm border rounded' position='top-0 left-4' width='200px' zIndex='10' />
-        </div>
-    );
-}
-```
-
-#### DocumentImage
-
-The `DocumentImage` component is used to render an element based on the uploaded assets of the `file` field in a `profile` section. The asset can be either an image or a file. In the case of a regular file, this component renders an element with preview functionality if applicable. It accepts the following props:
-
--   `profile` - A Profile object.
--   `value` - The value of the file field to render.
--   `activeLang` - Specify the language of the value if it is a `multi-lingual` field.
--   `className` - The `className` of the element.
--   `filePreview` - A boolean indicate weather show file preview or not.
-
-Here's an example of how to use the `DocumentImage` component:
-
-```jsx
-import { DocumentImage } from '@uniwebcms/module-sdk';
-
-function MyComponent() {
-    return (
-        <div>
-            <DocumentImage contentType='docufolio' viewType='profile' contentId='1' value='_fieldValue' activeLang='en' className='xxx' filePreview={true} />
-        </div>
-    );
-}
-```
-
-### Utility Functions
-
-Uniweb SDK also provides several utility functions that can be used to perform common tasks. These functions include:
-
--   `client` - A function for making AJAX get requests
--   `postClient` - A function for making AJAX post requests
--   `localize` - A function return the localized string; _params: `map, defaultValue, language, return_the_first_non_empty_value_if_lang_value_is_empty`_
--   `getProfiles` - A function for fetching profiles
--   `getProfile` - A function for fetching a single profile
--   `getProfileSection` - A function for fetching a single profile's section data
--   `getListProfileItems` - A function for fetching profiles in a list
--   `getProfileTypes` - A function for fetching the information of a profile
-
-Here's examples of how to use these functions:
-
-```js
-import{ client, postClient, localize } from '@uniwebcms/module-sdk';
-
-client
-    .get('/api/data', {
-        params: {}
-    })
-    .then((response) => console.log(response))
-    .catch((error) => console.error(error));
-
-postClient
-    .post('/api', formData)
-    .then((response) => console.log(response))
-    .catch((error) => console.error(error));
-
-localize({en: 'Title', fr:'Titre', 'Title', true});
-
-getProfiles('_contentType', '_viewType');
-
-getProfile('_contentType', '_contentId');
-
-getProfileSection('_contentType', '_contentId', '_sectionId');
-
-getListProfileItems('_listId');
-
-getProfileTypes('_contentType', '_viewType');
-``` -->
 
 * * *
 
