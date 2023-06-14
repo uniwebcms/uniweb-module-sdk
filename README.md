@@ -1,8 +1,24 @@
 # Uniweb Module Software Development Kit (SDK)
 
-Uniweb Module SDK is an npm module that provides a set of React components and utility functions that can be used to make it easier to create and manage widgets.
+[Uniweb CMS](https://uniwebcms.com) is a **web engine** with advanced built-in intelligence to manage rich data and build websites from templates. The logic that is necessary for creating the user interface of a website exists at the level of **web components** that are powered by the web engine.
 
-<!-- This module provides five components: `ProfileImage`, `PopoverMenu`, `SmartLink`, `DocumentImage` and `Blogs`. -->
+The integration of custom components into a Uniweb system is done via Webpack Federated Modules. The **Uniweb Module SDK** is a software development kit that provides a thin wrapper around the underlying Uniweb JavaScript engine. The SDK provides a tailored and consistent API layer for the underlying web engine.
+
+The main building blocks provided by the engine fall into two categories: Custom React Hooks and General purpose components.
+
+## Custom React Hooks
+
+- useLoadProfileBody
+- useLinkedProfileFilterState
+- useGetProfile
+
+## General purpose components
+
+- Asset
+- Image
+- Link
+
+By using the SDK, a component creator is freed from having to implement low-level functionality or deal with complex backend requests. Creating a link to a page or fetching an asset become simple tasks when using the SDK. Similarly, when using the Custom React Hooks, a component creator can enjoy a simplified management of rendering states for common use cases.
 
 ## Installation
 
