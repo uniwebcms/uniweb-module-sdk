@@ -41,8 +41,20 @@ const useGetProfile = (profileType, contentId) =>
  * Object with several properties. The `filtered` property of the state is an array of Profile objects with the
  * ordered list of profiles to render.
  */
-const useLinkedProfileFilterState = function (profile, profileType, sectionName, fieldName) {
-    return profile.useLinkedProfileFilterState(useState, profileType, sectionName, fieldName);
+const useLinkedProfileFilterState = function (
+    profile,
+    profileType,
+    sectionName,
+    fieldName,
+    initialSelection
+) {
+    return profile.useLinkedProfileFilterState(
+        useState,
+        profileType,
+        sectionName,
+        fieldName,
+        initialSelection
+    );
 };
 
 export {
