@@ -11,13 +11,14 @@ import {
     useLinkedProfileFilterState,
     getComponent
 } from './helper';
+import MediaIcon from './MediaIcon';
 
 // methods or objects from uniweb engine
 const { parseLinksInArticle, getFirstElementInMap } = uniweb.getServices();
 export { Profile, website, parseLinksInArticle, getFirstElementInMap };
 
 // React components
-export { Link, Image, Asset, FileLogo };
+export { Link, Image, Asset, FileLogo, MediaIcon };
 
 // methods from local helper
 export { useGetProfile, useLoadProfileBody, useLinkedProfileFilterState, getComponent };

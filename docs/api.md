@@ -4,6 +4,9 @@
 <dt><a href="#module_Asset">Asset</a></dt>
 <dd><p>Render the asset file and provide a download link</p>
 </dd>
+<dt><a href="#module_cn">cn</a></dt>
+<dd><p>Imports the &#39;clsx&#39; method from the &#39;clsx&#39; npm library and exports it as &#39;cn&#39;.</p>
+</dd>
 <dt><a href="#module_FileLogo">FileLogo</a></dt>
 <dd><p>Render a file Icon</p>
 </dd>
@@ -13,8 +16,8 @@
 <dt><a href="#module_Link">Link</a></dt>
 <dd><p>Wrapper that links to a Profile or custom href.</p>
 </dd>
-<dt><a href="#module_cn">cn</a></dt>
-<dd><p>Imports the &#39;clsx&#39; method from the &#39;clsx&#39; npm library and exports it as &#39;cn&#39;.</p>
+<dt><a href="#module_MediaIcon">MediaIcon</a></dt>
+<dd><p>Render a social media icon</p>
 </dd>
 </dl>
 
@@ -66,6 +69,11 @@ function MyComponent() {
   );
 }
 ```
+<a name="module_cn"></a>
+
+## cn
+Imports the 'clsx' method from the 'clsx' npm library and exports it as 'cn'.
+
 <a name="module_FileLogo"></a>
 
 ## FileLogo
@@ -170,11 +178,35 @@ function MyComponent() {
   );
 }
 ```
-<a name="module_cn"></a>
+<a name="module_MediaIcon"></a>
 
-## cn
-Imports the 'clsx' method from the 'clsx' npm library and exports it as 'cn'.
+## MediaIcon
+Render a social media icon
 
+<a name="exp_module_MediaIcon--module.exports"></a>
+
+### module.exports() ⇒ <code>function</code> ⏏
+Return a Icon based on the social media type.
+
+**Kind**: Exported function  
+**Returns**: <code>function</code> - A react component.  
+**Component**: MediaIcon  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| type | <code>string</code> | The media type. |
+| size | <code>string</code> | The size of the icon. |
+| className | <code>string</code> | Additional tailwind className. |
+
+**Example**  
+```js
+function MyComponent() {
+  return (
+      <MediaIcon type={'facebook'} size="10" />
+  );
+}
+```
 <a name="useLoadProfileBody"></a>
 
 ## useLoadProfileBody(profile) ⇒ <code>bool</code>
