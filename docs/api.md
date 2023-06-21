@@ -13,6 +13,9 @@
 <dt><a href="#module_Link">Link</a></dt>
 <dd><p>Wrapper that links to a Profile or custom href.</p>
 </dd>
+<dt><a href="#module_cn">cn</a></dt>
+<dd><p>Imports the &#39;clsx&#39; method from the &#39;clsx&#39; npm library and exports it as &#39;cn&#39;.</p>
+</dd>
 </dl>
 
 ## Functions
@@ -167,6 +170,11 @@ function MyComponent() {
   );
 }
 ```
+<a name="module_cn"></a>
+
+## cn
+Imports the 'clsx' method from the 'clsx' npm library and exports it as 'cn'.
+
 <a name="useLoadProfileBody"></a>
 
 ## useLoadProfileBody(profile) ⇒ <code>bool</code>
