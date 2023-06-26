@@ -2,7 +2,6 @@ import Link from './Link';
 import Image from './Image';
 import Asset from './Asset';
 import FileLogo from './FileLogo';
-import { cn } from './CN';
 import {
     Profile,
     website,
@@ -12,6 +11,7 @@ import {
     getComponent
 } from './helper';
 import MediaIcon from './MediaIcon';
+import { twJoin, twMerge } from 'tailwind-merge';
 
 // methods or objects from uniweb engine
 const { parseLinksInArticle, getFirstElementInMap } = uniweb.getServices();
@@ -23,5 +23,5 @@ export { Link, Image, Asset, FileLogo, MediaIcon };
 // methods from local helper
 export { useGetProfile, useLoadProfileBody, useLinkedProfileFilterState, getComponent };
 
-// other local methods
-export { cn };
+// other methods
+export { twJoin, twMerge };

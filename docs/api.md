@@ -4,9 +4,6 @@
 <dt><a href="#module_Asset">Asset</a></dt>
 <dd><p>Render the asset file and provide a download link</p>
 </dd>
-<dt><a href="#module_cn">cn</a></dt>
-<dd><p>Imports the &#39;clsx&#39; method from the &#39;clsx&#39; npm library and exports it as &#39;cn&#39;.</p>
-</dd>
 <dt><a href="#module_FileLogo">FileLogo</a></dt>
 <dd><p>Render a file Icon</p>
 </dd>
@@ -69,11 +66,6 @@ function MyComponent() {
   );
 }
 ```
-<a name="module_cn"></a>
-
-## cn
-Imports the 'clsx' method from the 'clsx' npm library and exports it as 'cn'.
-
 <a name="module_FileLogo"></a>
 
 ## FileLogo

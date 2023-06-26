@@ -17,7 +17,7 @@ import {
     SiYoutube
 } from 'react-icons/si';
 import { FaResearchgate, FaTumblrSquare, FaQuora } from 'react-icons/fa';
-import { cn } from './CN';
+import { twMerge } from 'tailwind-merge';
 
 /**
  * Return a Icon based on the social media type.
@@ -61,5 +61,5 @@ export default function MediaIcon({ type, size = '8', className = '' }) {
         Icon = AiOutlineLink;
     }
 
-    return <Icon className={cn(`w-${size} h-${size}`, className)} />;
+    return <Icon className={twMerge(`w-${size} h-${size}`, className)} />;
 }
