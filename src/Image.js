@@ -4,6 +4,7 @@
  */
 
 import React from 'react';
+import { twMerge } from 'tailwind-merge';
 
 /**
  * Create a image with given profile and type.
@@ -43,7 +44,7 @@ export default function (props) {
     return (
         <img
             src={src}
-            className={`w-full h-full object-cover ${roundClassName} ${className}`}
+            className={twMerge('w-full h-full object-cover', roundClassName, className)}
             alt={alt}
             loading='lazy'
         />
