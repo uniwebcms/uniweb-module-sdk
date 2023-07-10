@@ -21,13 +21,12 @@ import DOMPurify from 'dompurify';
  * <SafeHtml value="<strong>Hello world!</strong>" as="span" className="my-class" />
  *
  * @component SafeHtml
- * @prop {string?} value - The HTML code to insert. 
+ * @prop {string?} value - The HTML code to insert.
  * @prop {string} as - The element type.
  * @returns {function|null} A react component if value is a string and null otherwise.
  */
 export default function SafeHtml({ value, as: Component = 'div', ...rest }) {
-    if (value === null || value === undefined)
-        return null;
-    
+    if (value === null || value === undefined) return null;
+
     return <Component dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(value) }} {...rest} />;
 }
