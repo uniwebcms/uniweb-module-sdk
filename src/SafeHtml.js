@@ -26,5 +26,8 @@ import DOMPurify from 'dompurify';
  * @returns {function} A react component.
  */
 export default function SafeHtml({ value, as: Component = 'div', ...rest }) {
+    if (value === null || value === undefined)
+        return null;
+    
     return <Component dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(value) }} {...rest} />;
 }
