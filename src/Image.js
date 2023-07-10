@@ -29,7 +29,16 @@ import { twMerge } from 'tailwind-merge';
  * @returns {function} A react component.
  */
 export default function (props) {
-    const { profile, type, size, rounded, className = '', value, alt: altText } = props;
+    const {
+        profile,
+        type,
+        size,
+        rounded,
+        className = '',
+        value,
+        alt: altText,
+        customStyle = false
+    } = props;
 
     const roundClassName = rounded ? (rounded === true ? 'rounded-full' : rounded) : '';
 
@@ -44,9 +53,13 @@ export default function (props) {
     return (
         <img
             src={src}
-            className={twMerge('w-full h-full object-cover', roundClassName, className)}
+            className={twMerge(
+                customStyle ? '' : 'w-full h-full object-cover',
+                roundClassName,
+                className
+            )}
             alt={alt}
-            loading='lazy'
+            loading="lazy"
         />
     );
 }
