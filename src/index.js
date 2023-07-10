@@ -2,6 +2,7 @@ import Link from './Link';
 import Image from './Image';
 import Asset from './Asset';
 import FileLogo from './FileLogo';
+import SafeHtml from './SafeHtml';
 import {
     Profile,
     website,
@@ -13,15 +14,15 @@ import {
 import MediaIcon from './MediaIcon';
 import { twJoin, twMerge } from 'tailwind-merge';
 
-// methods or objects from uniweb engine
+// Methods and objects from the Uniweb engine
 const { parseLinksInArticle, getFirstElementInMap } = uniweb.getServices();
 export { Profile, website, parseLinksInArticle, getFirstElementInMap };
 
 // React components
-export { Link, Image, Asset, FileLogo, MediaIcon };
+export { Link, Image, Asset, SafeHtml, FileLogo, MediaIcon };
 
-// methods from local helper
+// Locally defined functions
 export { useGetProfile, useLoadProfileBody, useLinkedProfileFilterState, getComponent };
 
-// other methods
+// Third-party utilities
 export { twJoin, twMerge };
