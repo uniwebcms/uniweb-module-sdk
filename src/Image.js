@@ -26,7 +26,8 @@ import { twMerge } from 'tailwind-merge';
  * @prop {string} className - Additional tailwind class names.
  * @prop {string} value - The value of the asset when type is not 'avatar' or 'banner'.
  * @prop {string} alt - The alt of the asset when type is not 'avatar' or 'banner'.
- * @prop {bool} ariaHidden - True for 'aria-hidden="true"' 
+ * @prop {bool} [ariaHidden=false] - True for 'aria-hidden="true"'.
+ * @prop {string} [loading="lazy"] - The React loading type used.
  * @returns {function} A react component.
  */
 export default function (props) {
@@ -39,7 +40,8 @@ export default function (props) {
         value,
         alt: altText,
         customStyle = false,
-        ariaHidden,
+        ariaHidden = false,
+        loading = "lazy",
     } = props;
 
     const roundClassName = rounded ? (rounded === true ? 'rounded-full' : rounded) : '';
@@ -61,7 +63,7 @@ export default function (props) {
                 className
             )}
             alt={alt}
-            loading="lazy"
+            loading={loading}
             aria-hidden={ariaHidden}
         />
     );
