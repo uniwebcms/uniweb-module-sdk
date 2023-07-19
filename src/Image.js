@@ -41,30 +41,46 @@ export default function (props) {
         alt: altText,
         customStyle = false,
         ariaHidden = false,
-        loading = "lazy",
+        loading = 'lazy'
     } = props;
 
     const roundClassName = rounded ? (rounded === true ? 'rounded-full' : rounded) : '';
 
-    let src, alt;
+    let src, alt, optSrc;
 
     if (type === 'banner' || type === 'avatar') {
         ({ url: src, alt } = profile.getImageInfo(type, size));
     } else {
-        ({ src, alt } = profile.getAssetInfo(value, true, altText));
+        ({ src, alt, optSrc } = profile.getAssetInfo(value, true, altText));
     }
 
-    return (
-        <img
-            src={src}
-            className={twMerge(
-                customStyle ? '' : 'w-full h-full object-cover',
-                roundClassName,
-                className
-            )}
-            alt={alt}
-            loading={loading}
-            aria-hidden={ariaHidden}
-        />
-    );
+    const ref = optSrc ? React.useRef(null) : null;
+
+    let imgProps = {
+        alt,
+        loading,
+        'aria-hidden': ariaHidden,
+        className: twMerge(
+            customStyle ? '' : 'w-full h-full object-cover',
+            roundClassName,
+            className
+        )
+    };
+
+    if (optSrc) {
+        imgProps.src = optSrc;
+
+        imgProps.ref = ref;
+
+        imgProps.onError = () => {
+            if (ref?.current && !ref.current.getAttribute('fallback')) {
+                ref.current.src = src;
+                ref.current.setAttribute('fallback', true);
+            }
+        };
+    } else {
+        imgProps.src = src;
+    }
+
+    return <img {...imgProps} />;
 }
