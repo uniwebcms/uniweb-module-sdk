@@ -16,6 +16,12 @@
 <dt><a href="#module_MediaIcon">MediaIcon</a></dt>
 <dd><p>Render a social media icon</p>
 </dd>
+<dt><a href="#module_Pages">Pages</a></dt>
+<dd><p>A custom router component that manages the rendering of index page and subpages.</p>
+</dd>
+<dt><a href="#module_SafeHtml">SafeHtml</a></dt>
+<dd><p>Render a generic container with a given HTML string inserted into it.</p>
+</dd>
 </dl>
 
 ## Functions
@@ -198,6 +204,96 @@ function MyComponent() {
       <MediaIcon type={'facebook'} size="10" />
   );
 }
+```
+<a name="module_Pages"></a>
+
+## Pages
+A custom router component that manages the rendering of index page and subpages.
+
+<a name="exp_module_Pages--module.exports"></a>
+
+### module.exports(list, renderIndex, renderSubpage) ⇒ <code>JSX.Element</code> ⏏
+Custom Router Component
+
+This component acts as a router to manage the rendering of pages and subpages within the website.
+It accepts an array of data objects (`list` prop) representing different content and two render props
+(`renderIndex` and `renderSubpage`) to customize how the content is displayed.
+
+**Kind**: Exported function  
+**Returns**: <code>JSX.Element</code> - - Returns the JSX element for the custom router component.  
+**Component**:   
+
+| Param | Type | Description |
+| --- | --- | --- |
+| list | <code>Array.&lt;Object&gt;</code> | An array of data objects representing subpages. |
+| renderIndex | <code>function</code> | A render prop function to display a summarized view of all subpages. |
+| renderSubpage | <code>function</code> | A render prop function to render the content of a specific subpage. |
+
+**Example**  
+```js
+// Define an array of data objects representing subpages
+const profiles = [
+  { ...profile_1 },
+  { ...profile_2 },
+  { ...profile_3 },
+  ...
+];
+
+// Example usage of the Custom Router Component
+<Pages
+  list={profiles}
+  renderIndex={(profiles) => {
+    // Render a summarized view of all subpages (e.g., a list of profiles)
+    return (
+      <ul>
+        {profiles.map((profile) => (
+          <li key={profile.key}>{profile.title}</li>
+        ))}
+      </ul>
+    );
+  }}
+  renderSubpage={(key, profile) => {
+    // Render the content of a specific subpage based on the provided data
+    return (
+      <div key={key}>
+        <h1>{profile.title}</h1>
+        <p>{profile.description}</p>
+      </div>
+    );
+  }}
+/>
+```
+<a name="module_SafeHtml"></a>
+
+## SafeHtml
+Render a generic container with a given HTML string inserted into it.
+
+<a name="exp_module_SafeHtml--module.exports"></a>
+
+### module.exports() ⇒ <code>function</code> \| <code>null</code> ⏏
+In React, dangerouslySetInnerHTML is provided to directly insert HTML into
+a React element. As the name implies, it's not generally recommended because
+it can expose your application to cross-site scripting (XSS) attacks if misused.
+If you're fully aware of the danger and confident that the HTML to use is safe,
+and you still need to inject HTML directly into a React component,
+this wrapper component is a simple way to use dangerouslySetInnerHTML.
+
+As an extra precaution, the given HTML is sanitized with DOMPurify to ensure
+it's safe to inject into the page.
+
+**Kind**: Exported function  
+**Returns**: <code>function</code> \| <code>null</code> - A react component if value is a string and null otherwise.  
+**Component**: SafeHtml  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| value | <code>string</code> | The HTML code to insert. |
+| as | <code>string</code> | The element type. |
+
+**Example**  
+```js
+<SafeHtml value="<strong>Hello world!</strong>" as="span" className="my-class" />
 ```
 <a name="useLoadProfileBody"></a>
 

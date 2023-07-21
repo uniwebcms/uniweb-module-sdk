@@ -3,6 +3,7 @@ import Image from './Image';
 import Asset from './Asset';
 import FileLogo from './FileLogo';
 import SafeHtml from './SafeHtml';
+import Pages from './Pages';
 import {
     Profile,
     website,
@@ -19,7 +20,7 @@ const { parseLinksInArticle, getFirstElementInMap } = uniweb.getServices();
 export { Profile, website, parseLinksInArticle, getFirstElementInMap };
 
 // React components
-export { Link, Image, Asset, SafeHtml, FileLogo, MediaIcon };
+export { Link, Image, Asset, SafeHtml, FileLogo, MediaIcon, Pages };
 
 // Locally defined functions
 export { useGetProfile, useLoadProfileBody, useLinkedProfileFilterState, getComponent };
