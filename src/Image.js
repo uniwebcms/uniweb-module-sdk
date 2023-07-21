@@ -25,6 +25,7 @@ import { twMerge } from 'tailwind-merge';
  * @prop {string|bool} [rounded=false] - true for 'rounded-full' or a specific class name.
  * @prop {string} className - Additional tailwind class names.
  * @prop {string} value - The value of the asset when type is not 'avatar' or 'banner'.
+ * @prop {string} src - Another option of the value of the asset when type is not 'avatar' or 'banner'.
  * @prop {string} alt - The alt of the asset when type is not 'avatar' or 'banner'.
  * @prop {bool} [ariaHidden=false] - True for 'aria-hidden="true"'.
  * @prop {string} [loading="lazy"] - The React loading type used.
@@ -37,12 +38,15 @@ export default function (props) {
         size,
         rounded,
         className = '',
-        value,
+        value: imgVal,
+        src: imgSrc,
         alt: altText,
         customStyle = false,
         ariaHidden = false,
         loading = 'lazy'
     } = props;
+
+    let value = imgSrc || imgVal;
 
     const roundClassName = rounded ? (rounded === true ? 'rounded-full' : rounded) : '';
 
@@ -74,7 +78,7 @@ export default function (props) {
 
         imgProps.onError = () => {
             if (ref?.current && !ref.current.getAttribute('fallback')) {
-                ref.current.src = src;
+                ref.current.setAttribute('src', src);
                 ref.current.setAttribute('fallback', true);
             }
         };

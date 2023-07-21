@@ -32,10 +32,15 @@ const { Link } = website.routingComponents;
  * @prop {string|Profile} style - A `style` attribute for the anchor element.
  * @prop {string?} className - A `className` attribute for the anchor element.
  * @prop {string?} to - An `href` attribute for the anchor element.
+ * @prop {string?} href - Another acceptable `href` attribute for the anchor element.
  * @prop {string?} ariaLabel - An ARIA label for the anchor element.
  * @prop {ReactNode|ReactNodeArray} children - The contents for the Link container.
  * @returns {function} A Link component.
  */
 export default function (props) {
+    const { href, to } = props;
+
+    props.to = href || to;
+
     return <Link {...props} />;
 }
