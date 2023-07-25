@@ -54,12 +54,12 @@ import { website, Profile } from './helper';
  * />
  */
 export default function (props) {
-    const { list, renderIndex, renderSubpage } = props;
+    const { list, renderIndex, renderSubpage, ...rest } = props;
 
     const { RouteSwitcher } = website.routingComponents;
 
     const CardsRenderer = () => {
-        return renderIndex(list);
+        return renderIndex({ list, ...rest });
     };
 
     const ItemRender = () => {
