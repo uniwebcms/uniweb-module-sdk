@@ -4,6 +4,7 @@ import Asset from './Asset';
 import FileLogo from './FileLogo';
 import SafeHtml from './SafeHtml';
 import Pages from './Pages';
+import Icon from './Icon';
 import {
     Profile,
     website,
@@ -20,7 +21,7 @@ const { parseLinksInArticle, getFirstElementInMap } = uniweb.getServices();
 export { Profile, website, parseLinksInArticle, getFirstElementInMap };
 
 // React components
-export { Link, Image, Asset, SafeHtml, FileLogo, MediaIcon, Pages };
+export { Link, Image, Asset, Icon, SafeHtml, FileLogo, MediaIcon, Pages };
 
 // Locally defined functions
 export { useGetProfile, useLoadProfileBody, useLinkedProfileFilterState, getComponent };
