@@ -37,10 +37,6 @@ const { Link } = website.routingComponents;
  * @prop {ReactNode|ReactNodeArray} children - The contents for the Link container.
  * @returns {function} A Link component.
  */
-export default function (props) {
-    const { href, to } = props;
-
-    props.to = href || to;
-
-    return <Link {...props} />;
+export default function ({ to, href, ...props }) {
+    return <Link to={href || to} {...props} />;
 }
