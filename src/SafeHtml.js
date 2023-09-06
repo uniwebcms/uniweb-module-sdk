@@ -5,6 +5,7 @@
 
 import React from 'react';
 import DOMPurify from 'dompurify';
+import { Profile } from './helper';
 
 /**
  * In React, dangerouslySetInnerHTML is provided to directly insert HTML into
@@ -25,8 +26,16 @@ import DOMPurify from 'dompurify';
  * @prop {string} as - The element type.
  * @returns {function|null} A react component if value is a string and null otherwise.
  */
-export default function SafeHtml({ value, as: Component = 'div', ...rest }) {
+export default function SafeHtml({ value, as: Component = 'div', glue = '<br />', ...rest }) {
     if (value === null || value === undefined) return null;
 
-    return <Component dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(value) }} {...rest} />;
+    if (Array.isArray(value)) value = value.join(glue);
+
+    return (
+        <Component
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(value) }}
+            title={Profile.stripTags(value)}
+            {...rest}
+        />
+    );
 }
