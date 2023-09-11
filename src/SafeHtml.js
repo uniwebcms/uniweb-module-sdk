@@ -34,7 +34,7 @@ export default function SafeHtml({ value, as: Component = 'div', glue = '<br />'
     return (
         <Component
             dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(value) }}
-            title={Profile.stripTags(value)}
+            // title={Profile.stripTags(value)}
             {...rest}
         />
     );
