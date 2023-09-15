@@ -50,6 +50,7 @@ const useLinkedProfileFilterState = function (
 ) {
     return profile.useLinkedProfileFilterState(
         useState,
+        useEffect,
         profileType,
         sectionName,
         fieldName,
