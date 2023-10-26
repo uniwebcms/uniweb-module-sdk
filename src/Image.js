@@ -38,6 +38,7 @@ export default function (props) {
         size,
         rounded,
         className = '',
+        style = null,
         value: imgVal,
         src: imgSrc,
         alt: altText,
@@ -90,6 +91,10 @@ export default function (props) {
         };
     } else {
         imgProps.src = src;
+    }
+
+    if (style) {
+        imgProps.style = style;
     }
 
     return <img {...imgProps} />;
