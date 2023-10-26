@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { AiFillGooglePlusCircle, AiOutlineLink } from 'react-icons/ai';
+import { AiFillGooglePlusCircle } from 'react-icons/ai';
 import {
     SiAcademia,
     SiMedium,
@@ -17,6 +17,7 @@ import {
     SiYoutube
 } from 'react-icons/si';
 import { FaResearchgate, FaTumblrSquare, FaQuora } from 'react-icons/fa';
+import { HiOutlineLink } from 'react-icons/hi2';
 import { twMerge } from 'tailwind-merge';
 
 /**
@@ -58,7 +59,7 @@ export default function MediaIcon({ type, size = '8', className = '' }) {
     if (map[type]) {
         Icon = map[type];
     } else {
-        Icon = AiOutlineLink;
+        Icon = HiOutlineLink;
     }
 
     return <Icon className={twMerge(`w-${size} h-${size}`, className)} />;
