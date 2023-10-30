@@ -4,7 +4,6 @@
  */
 
 import React from 'react';
-import { AiFillGooglePlusCircle } from 'react-icons/ai';
 import {
     SiAcademia,
     SiMedium,
@@ -16,7 +15,7 @@ import {
     SiTwitter,
     SiYoutube
 } from 'react-icons/si';
-import { FaResearchgate, FaTumblrSquare, FaQuora } from 'react-icons/fa';
+import { FaResearchgate, FaTumblrSquare, FaQuora, FaGooglePlus } from 'react-icons/fa';
 import { HiOutlineLink } from 'react-icons/hi2';
 import { twMerge } from 'tailwind-merge';
 
@@ -41,7 +40,7 @@ export default function MediaIcon({ type, size = '8', className = '' }) {
     const map = {
         academia_edu: SiAcademia,
         facebook: SiFacebook,
-        google_plus: AiFillGooglePlusCircle,
+        google_plus: FaGooglePlus,
         linkedin: SiLinkedin,
         medium: SiMedium,
         mendeley: SiMendeley,
