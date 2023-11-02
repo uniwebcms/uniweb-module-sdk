@@ -38,9 +38,11 @@ export default function (props) {
         size,
         rounded,
         className = '',
+        style = null,
         value: imgVal,
         src: imgSrc,
         alt: altText,
+        url: imgURL,
         customStyle = false,
         ariaHidden = false,
         loading = 'lazy'
@@ -55,7 +57,12 @@ export default function (props) {
     if (type === 'banner' || type === 'avatar') {
         ({ url: src, alt } = profile.getImageInfo(type, size));
     } else {
-        ({ src, alt, optSrc } = profile.getAssetInfo(value, true, altText));
+        if (imgURL && !value) {
+            src = imgURL;
+            alt = altText;
+        } else {
+            ({ src, alt, optSrc } = profile.getAssetInfo(value, true, altText));
+        }
     }
 
     const ref = optSrc ? React.useRef(null) : null;
@@ -87,6 +94,10 @@ export default function (props) {
         };
     } else {
         imgProps.src = src;
+    }
+
+    if (style) {
+        imgProps.style = style;
     }
 
     return <img {...imgProps} />;

@@ -2,5 +2,5 @@ import React from 'react';
 import SVG from 'react-inlinesvg';
 
 export default function ({ className, icon }) {
-    return <SVG className={className} src={icon}></SVG>;
+    return <SVG className={className} src={icon} aria-hidden='true'></SVG>;
 }
