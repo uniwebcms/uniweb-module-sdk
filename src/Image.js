@@ -77,7 +77,10 @@ export default function (props) {
         imgProps.ref = ref;
 
         imgProps.onError = () => {
-            if (ref?.current && !ref.current.getAttribute('fallback')) {
+            if (
+                ref?.current &&
+                (!ref.current.getAttribute('fallback') || ref.current.getAttribute('src') !== src)
+            ) {
                 ref.current.setAttribute('src', src);
                 ref.current.setAttribute('fallback', true);
             }
