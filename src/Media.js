@@ -12,7 +12,7 @@ export default function Media(props) {
 
         return <Image className={className} {...{ profile, value, alt, url }} />;
     } else {
-        const { src, alt } = media;
+        const { src, caption } = media;
 
         const isYouTube = src.startsWith('https://www.youtube');
         const isVimeo = src.startsWith('https://player.vimeo.com/');
@@ -23,7 +23,7 @@ export default function Media(props) {
                     <iframe
                         className={twMerge('absolute inset-0 w-full h-full', className)}
                         src={src}
-                        title={alt}
+                        title={caption}
                         allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                         allowFullScreen></iframe>
                 </div>
@@ -34,7 +34,7 @@ export default function Media(props) {
                     <iframe
                         className={twMerge('absolute inset-0 w-full h-full', className)}
                         src={src}
-                        title={alt}
+                        title={caption}
                         allow='autoplay; fullscreen; picture-in-picture'
                         allowFullScreen></iframe>
                 </div>
