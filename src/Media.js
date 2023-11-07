@@ -3,7 +3,7 @@ import Image from './Image';
 import { twMerge } from 'tailwind-merge';
 
 export default function Media(props) {
-    const { profile, media, className = '' } = props;
+    const { profile, media, className = '', style, asBg = false } = props;
 
     if (!media) return null;
 
@@ -19,10 +19,12 @@ export default function Media(props) {
 
         if (isYouTube) {
             return (
-                <div className='relative' style={{ paddingBottom: '56.25%' }}>
+                <div
+                    className={twMerge('relative', className)}
+                    style={style ?? { paddingBottom: '56.25%' }}>
                     <iframe
                         className={twMerge('absolute inset-0 w-full h-full', className)}
-                        src={src}
+                        src={asBg ? `${src}?autoplay=1&mute=1&controls=0&loop=1` : src}
                         title={caption}
                         allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                         allowFullScreen></iframe>
@@ -30,10 +32,12 @@ export default function Media(props) {
             );
         } else if (isVimeo) {
             return (
-                <div className='relative' style={{ paddingBottom: '56.25%' }}>
+                <div
+                    className={twMerge('relative', className)}
+                    style={style ?? { paddingBottom: '56.25%' }}>
                     <iframe
                         className={twMerge('absolute inset-0 w-full h-full', className)}
-                        src={src}
+                        src={asBg ? `${src}?autoplay=1&muted=1&controls=0&loop=1` : src}
                         title={caption}
                         allow='autoplay; fullscreen; picture-in-picture'
                         allowFullScreen></iframe>
