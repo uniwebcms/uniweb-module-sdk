@@ -13,7 +13,8 @@ import {
     SiPinterest,
     SiFacebook,
     SiTwitter,
-    SiYoutube
+    SiYoutube,
+    SiGithub
 } from 'react-icons/si';
 import { FaResearchgate, FaTumblrSquare, FaQuora, FaGooglePlus } from 'react-icons/fa';
 import { HiOutlineLink } from 'react-icons/hi2';
@@ -50,7 +51,8 @@ export default function MediaIcon({ type, size = '8', className = '' }) {
         researchgate: FaResearchgate,
         tumblr: FaTumblrSquare,
         twitter: SiTwitter,
-        youtube: SiYoutube
+        youtube: SiYoutube,
+        github: SiGithub
     };
 
     let Icon = null;
