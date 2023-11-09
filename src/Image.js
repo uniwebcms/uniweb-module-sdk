@@ -38,15 +38,17 @@ export default function (props) {
         size,
         rounded,
         className = '',
-        style = null,
         value: imgVal,
         src: imgSrc,
         alt: altText,
         url: imgURL,
         customStyle = false,
         ariaHidden = false,
-        loading = 'lazy'
+        loading = 'lazy',
+        filter = null
     } = props;
+
+    let style = props.style || null;
 
     let value = imgSrc || imgVal;
 
@@ -66,6 +68,24 @@ export default function (props) {
     }
 
     const ref = optSrc ? React.useRef(null) : null;
+
+    if (filter) {
+        let filterStyle = [];
+
+        Object.keys(filter).forEach((key) => {
+            let val = filter?.[key] ? filter[key] : '';
+
+            if (val) {
+                filterStyle.push(`${key}(${val})`);
+            }
+        });
+
+        const filterCSS = {
+            filter: filterStyle.join(' ') + ';'
+        };
+
+        style = style ? { ...style, ...filterCSS } : filterCSS;
+    }
 
     let imgProps = {
         alt,
