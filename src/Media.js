@@ -1,12 +1,10 @@
-import React, { useState, createRef } from 'react';
+import React, { useState } from 'react';
 import Image from './Image';
 import { twMerge } from 'tailwind-merge';
 import { BiPlay } from 'react-icons/bi';
 
 export default function Media(props) {
     const { profile, media, className = '', style, asBg = false, thumbnail } = props;
-
-    const frameRef = createRef(null);
 
     if (!media) return null;
 
@@ -34,7 +32,6 @@ export default function Media(props) {
 
         const frame = (
             <iframe
-                ref={frameRef}
                 className={twMerge('absolute inset-0 w-full h-full', className)}
                 src={`${src}${urlParams}`}
                 title={caption}
