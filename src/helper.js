@@ -2,6 +2,9 @@ import { useState, useEffect, lazy } from 'react';
 
 const website = uniweb.activeWebsite;
 const Profile = uniweb.Profile;
+const docProfile = website.activePage.getPageProfile();
+
+const stripTags = Profile.stripTags;
 
 const getComponent = (type, name) => lazy(() => uniweb.getComponent(type, name));
 
@@ -64,5 +67,7 @@ export {
     getComponent,
     useLinkedProfileFilterState,
     useGetProfile,
-    useLoadProfileBody
+    useLoadProfileBody,
+    docProfile,
+    stripTags
 };
