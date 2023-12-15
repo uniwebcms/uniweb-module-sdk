@@ -10,6 +10,7 @@ import {
     website,
     useGetProfile,
     useLoadProfileBody,
+    useProfileFilterState,
     useLinkedProfileFilterState,
     getComponent,
     docProfile,
@@ -27,7 +28,13 @@ export { Profile, website, parseLinksInArticle, getFirstElementInMap, docProfile
 export { Link, Image, Asset, Icon, SafeHtml, FileLogo, MediaIcon, Pages, Media };
 
 // Locally defined functions
-export { useGetProfile, useLoadProfileBody, useLinkedProfileFilterState, getComponent };
+export {
+    useGetProfile,
+    useLoadProfileBody,
+    useProfileFilterState,
+    useLinkedProfileFilterState,
+    getComponent
+};
 
 // Third-party utilities
 export { twJoin, twMerge };
