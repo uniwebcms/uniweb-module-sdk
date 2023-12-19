@@ -13,7 +13,7 @@ import {
     useProfileFilterState,
     useLinkedProfileFilterState,
     getComponent,
-    docProfile,
+    getPageProfile,
     stripTags
 } from './helper';
 import MediaIcon from './MediaIcon';
@@ -22,7 +22,7 @@ import { twJoin, twMerge } from 'tailwind-merge';
 
 // Methods and objects from the Uniweb engine
 const { parseLinksInArticle, getFirstElementInMap } = uniweb.getServices();
-export { Profile, website, parseLinksInArticle, getFirstElementInMap, docProfile, stripTags };
+export { Profile, website, parseLinksInArticle, getFirstElementInMap, getPageProfile, stripTags };
 
 // React components
 export { Link, Image, Asset, Icon, SafeHtml, FileLogo, MediaIcon, Pages, Media };

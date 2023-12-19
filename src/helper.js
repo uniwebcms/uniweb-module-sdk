@@ -2,11 +2,14 @@ import { useState, useEffect, lazy } from 'react';
 
 const website = uniweb.activeWebsite;
 const Profile = uniweb.Profile;
-const docProfile = website.activePage.getPageProfile();
 
 const stripTags = Profile.stripTags;
 
 const getComponent = (type, name) => lazy(() => uniweb.getComponent(type, name));
+
+const getPageProfile = () => {
+    return website.activePage ? website.activePage.getPageProfile() : null;
+};
 
 /**
  * Create a React state-effect combo to trigger the initialization of a profile
@@ -81,6 +84,6 @@ export {
     useLinkedProfileFilterState,
     useGetProfile,
     useLoadProfileBody,
-    docProfile,
+    getPageProfile,
     stripTags
 };
