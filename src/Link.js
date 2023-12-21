@@ -6,7 +6,6 @@
 import React from 'react';
 import { website } from './helper';
 
-// const { Link } = website.routingComponents;
 const { Link } = website.getRoutingComponents();
 
 /**
