@@ -6,7 +6,8 @@
 import React from 'react';
 import { website } from './helper';
 
-const { Link } = website.routingComponents;
+// const { Link } = website.routingComponents;
+const { Link } = website.getRoutingComponents();
 
 /**
  * Create a React DOM router Link that wraps content that functions as a
