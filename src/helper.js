@@ -3,8 +3,6 @@ import { useState, useEffect, lazy } from 'react';
 const website = uniweb.activeWebsite;
 const Profile = uniweb.Profile;
 
-const stripTags = Profile.stripTags;
-
 const getComponent = (type, name) => lazy(() => uniweb.getComponent(type, name));
 
 const getPageProfile = () => {
@@ -74,6 +72,25 @@ const useLinkedProfileFilterState = function (
  */
 const useProfileFilterState = function (profile, profiles, initialSelection) {
     return profile.useProfileFilterState(useState, useEffect, profiles, initialSelection);
+};
+
+/**
+ * Strip html string uses regular expressions;
+ * Remove all HTML tags from an HTML string and returns a plain string
+ * @param {*} htmlString
+ * @returns
+ */
+const stripTags = (htmlString) => {
+    if (!htmlString || typeof htmlString !== 'string') return '';
+
+    // Remove HTML tags using regular expression
+    const plainString = htmlString.replace(/<[^>]*>/g, '');
+
+    // Decode HTML entities
+    const decodedString = new DOMParser().parseFromString(plainString, 'text/html').body
+        .textContent;
+
+    return decodedString;
 };
 
 export {
