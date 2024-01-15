@@ -11,7 +11,7 @@ import {
     useGetProfile,
     useLoadProfileBody,
     useProfileFilterState,
-    useLinkedProfileFilterState,
+    useBlockInputFilterState,
     getComponent,
     getPageProfile,
     stripTags
@@ -32,7 +32,7 @@ export {
     useGetProfile,
     useLoadProfileBody,
     useProfileFilterState,
-    useLinkedProfileFilterState,
+    useBlockInputFilterState,
     getComponent
 };
 
