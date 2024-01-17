@@ -12,6 +12,7 @@ import {
     useLoadProfileBody,
     useProfileFilterState,
     useBlockInputFilterState,
+    useBlockState,
     getComponent,
     getPageProfile,
     stripTags
@@ -29,6 +30,7 @@ export { Link, Image, Asset, Icon, SafeHtml, FileLogo, MediaIcon, Pages, Media }
 
 // Locally defined functions
 export {
+    useBlockState,
     useGetProfile,
     useLoadProfileBody,
     useProfileFilterState,

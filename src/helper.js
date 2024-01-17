@@ -56,6 +56,10 @@ const useProfileFilterState = (profiles, initialSelection) => {
     return [filterState, setFilterState];
 };
 
+const useBlockState = (block, initializer) => {
+    return block.useBlockState(useState, initializer);
+};
+
 const useBlockInputFilterState = (block, initialSelection) => {
     const profiles = block.input.profiles;
     const histogram = generateHistogram(profiles);
@@ -243,5 +247,6 @@ export {
     useGetProfile,
     useLoadProfileBody,
     useProfileFilterState,
-    useBlockInputFilterState
+    useBlockInputFilterState,
+    useBlockState
 };
