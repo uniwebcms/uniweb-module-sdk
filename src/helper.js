@@ -61,7 +61,7 @@ const useBlockState = (block, initializer) => {
 };
 
 const useBlockInputFilterState = (block, initialSelection) => {
-    const profiles = block.input.profiles;
+    const profiles = block.input?.profiles || [];
     const histogram = generateHistogram(profiles);
 
     const initializer = {
