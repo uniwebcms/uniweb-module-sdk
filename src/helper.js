@@ -193,21 +193,24 @@ const generateHistogram = (profiles) => {
 const filterProfiles = (profiles, histogram, selection) => {
     if (!selection) return profiles;
 
-    const { searchText = '', _sort, ...otherFilters } = selection;
+    const { _search, _sort, ...otherFilters } = selection;
 
     const filtered = profiles.filter((profile) => {
         let valid = true;
+
         const { title } = profile.getBasicInfo();
 
-        if (searchText) {
-            valid = title.toLowerCase().includes(searchText.toLowerCase());
+        if (_search) {
+            valid = title.toLowerCase().includes(_search.toLowerCase());
         }
+
         Object.entries(otherFilters).forEach(([key, value]) => {
             if (value) {
                 const ids = histogram[key]?.[value] || [];
                 valid = valid && ids.includes(profile.key);
             }
         });
+
         return valid;
     });
 
