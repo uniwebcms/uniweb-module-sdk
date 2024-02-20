@@ -3,6 +3,8 @@ import { useState, useEffect, lazy } from 'react';
 const website = uniweb.activeWebsite;
 const Profile = uniweb.Profile;
 
+const { useParams, useLocation, useSWR, useNavigate } = website.getRoutingComponents();
+
 const getComponent = (type, name) => lazy(() => uniweb.getComponent(type, name));
 
 const getPageProfile = () => {
@@ -251,5 +253,9 @@ export {
     useLoadProfileBody,
     useProfileFilterState,
     useBlockInputFilterState,
-    useBlockState
+    useBlockState,
+    useParams,
+    useLocation,
+    useSWR,
+    useNavigate
 };

@@ -15,7 +15,11 @@ import {
     useBlockState,
     getComponent,
     getPageProfile,
-    stripTags
+    stripTags,
+    useParams,
+    useLocation,
+    useSWR,
+    useNavigate
 } from './helper';
 import MediaIcon from './MediaIcon';
 import Media from './Media';
@@ -37,6 +41,9 @@ export {
     useBlockInputFilterState,
     getComponent
 };
+
+// routing hooks
+export { useParams, useLocation, useSWR, useNavigate };
 
 // Third-party utilities
 export { twJoin, twMerge };
