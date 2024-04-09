@@ -77,7 +77,7 @@ const useBlockInputFilterState = (block, initialSelection) => {
 
     // Reset the state when the block changes
     useEffect(() => {
-        setBlockState(block.state || initializer);
+        setBlockState(block.state || initializer); // the block.state may contain data not related to the filter state, consider remove it
     }, [block]);
 
     const updateBlockState = (selection) => {
@@ -165,9 +165,10 @@ const generateHistogram = (profiles) => {
     const filterableFields = Profile.getFilterableFields(profileType);
 
     filterableFields.forEach((field) => {
-        const { name } = field;
-        // const label = website.localize(field.label);
-        const label = field.label.en;
+        let { name, label, byProfile } = field;
+
+        label = website.localize(label);
+
         histogram[label] = {};
 
         profiles.forEach((profile) => {
@@ -178,6 +179,12 @@ const generateHistogram = (profiles) => {
                     ? head[name][1] || ''
                     : head[name]
                 : '';
+
+            if (typeof value === 'object' && byProfile) {
+                const { titleFieldName } = Profile.getProfileTitleAndCaptionFieldName(byProfile);
+
+                value = value[titleFieldName];
+            }
 
             if (value) {
                 if (histogram[label][value]) {
