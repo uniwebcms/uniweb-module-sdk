@@ -36,12 +36,13 @@ export default function (props) {
         return withDownload ? (
             <a
                 href={href}
-                target='_blank'
+                target="_blank"
                 download={basename}
                 onClick={(e) => {
                     e.preventDefault();
                     downloadFile();
-                }}>
+                }}
+            >
                 <HiCloudDownload
                     className={`text-blue-400 w-6 h-6 absolute top-3 right-3 invisible group-hover:visible`}
                 />
@@ -62,12 +63,12 @@ export default function (props) {
 
     let backupImg = (
         <div className={`w-full h-full bg-white flex items-center justify-center`}>
-            <FileLogo filename={basename} size='24'></FileLogo>
+            <FileLogo filename={basename} size="24"></FileLogo>
         </div>
     );
 
     const [markup, setMarkup] = React.useState(
-        <div className={`h-full [overflow-y:overlay] relative flex items-center`}>
+        <div className={`h-full relative flex items-center`}>
             <DownloadWrapper>
                 <img
                     className={`h-full w-full`}
