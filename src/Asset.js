@@ -68,7 +68,7 @@ export default function (props) {
     );
 
     const [markup, setMarkup] = React.useState(
-        <div className={`h-full relative flex items-center`}>
+        <div className={`h-full overflow-hidden relative flex items-center`}>
             <DownloadWrapper>
                 <img
                     className={`h-full w-full`}
