@@ -3,7 +3,7 @@
  * @module Asset
  */
 
-import React from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 import { HiCloudDownload } from 'react-icons/hi';
 import FileLogo from './FileLogo';
 
@@ -23,7 +23,7 @@ import FileLogo from './FileLogo';
  * @prop {string|bool} [withDownload=true] - true for 'rounded-full' or a specific class name.
  * @returns {function} A react component.
  */
-export default function (props) {
+const Asset = forwardRef((props, ref) => {
     const { value, profile, withDownload = true } = props;
 
     let filename = value || '';
@@ -36,13 +36,12 @@ export default function (props) {
         return withDownload ? (
             <a
                 href={href}
-                target="_blank"
+                target='_blank'
                 download={basename}
                 onClick={(e) => {
                     e.preventDefault();
                     downloadFile();
-                }}
-            >
+                }}>
                 <HiCloudDownload
                     className={`text-blue-400 w-6 h-6 absolute top-3 right-3 invisible group-hover:visible`}
                 />
@@ -63,7 +62,7 @@ export default function (props) {
 
     let backupImg = (
         <div className={`w-full h-full bg-white flex items-center justify-center`}>
-            <FileLogo filename={basename} size="24"></FileLogo>
+            <FileLogo filename={basename} size='24'></FileLogo>
         </div>
     );
 
@@ -82,5 +81,13 @@ export default function (props) {
         </div>
     );
 
+    useImperativeHandle(ref, () => ({
+        triggerDownload: () => {
+            downloadFile();
+        }
+    }));
+
     return markup;
-}
+});
+
+export default Asset;
