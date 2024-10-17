@@ -37,7 +37,12 @@ export default function (props) {
 
     const isImg = ['jpg', 'jpeg', 'png', 'webp', 'gif'].includes(ext);
 
-    if (isImg) return <BsImageFill className={`w-${size} h-${size} flex-shrink-0`}></BsImageFill>;
+    if (isImg)
+        return (
+            <BsImageFill
+                style={{ width: `${4 * parseInt(size)}px`, height: `${4 * parseInt(size)}px` }}
+                className='flex-shrink-0'></BsImageFill>
+        );
 
     if (['xlsx', 'xlsm', 'xlsb', 'xls'].includes(ext)) {
         Render = Excel;
@@ -55,5 +60,9 @@ export default function (props) {
         Render = Other;
     }
 
-    return <Render className={`w-${size} h-${size} flex-shrink-0`}></Render>;
+    return (
+        <Render
+            style={{ width: `${4 * parseInt(size)}px`, height: `${4 * parseInt(size)}px` }}
+            className='flex-shrink-0'></Render>
+    );
 }
