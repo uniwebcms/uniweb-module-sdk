@@ -29,34 +29,10 @@ const useLoadProfileBody = (profile) => profile.useReadyStateEffect(useState, us
  * @param {string} profileType - A profile object or a profile type string.
  * @param {int|string} contentId - The ID of the profile if profileOrType is a string.
  * Otherwise, it must be empty.
- * @returns {Profile|false} Returns the profile object once it is in a complete (ready) state.
+ * @returns {Profile|false} Returns the profile object, fetching error, mutate function, and selfMutate function.
  * Returns false while the profile data is being fetched.
  */
-const useGetProfile = (profileType, contentId) =>
-    Profile.useCompleteProfile(useState, useEffect, profileType, contentId);
-
-const useProfileFilterState = (profiles, initialSelection) => {
-    const [filterState, setState] = useState(() => {
-        const histogram = generateHistogram(profiles);
-
-        return {
-            unfiltered: profiles,
-            filters: histogram,
-            filtered: filterProfiles(profiles, histogram, initialSelection),
-            selection: initialSelection || {}
-        };
-    });
-
-    const setFilterState = (selection) => {
-        setState({
-            ...filterState,
-            selection,
-            filtered: filterProfiles(filterState.unfiltered, filterState.filters, selection)
-        });
-    };
-
-    return [filterState, setFilterState];
-};
+const useGetProfile = (profileType, contentId) => uniweb.useCompleteProfile(profileType, contentId);
 
 const useBlockState = (block, initializer) => {
     return block.useBlockState(useState, initializer);
@@ -90,47 +66,6 @@ const useBlockInputFilterState = (block, initialSelection) => {
 
     return [blockState, updateBlockState];
 };
-
-// /**
-//  * Get a list of profiles linked to a given profile and a function to update the filter and sorting state of the list.
-//  *
-//  * @param {Profile} profile - The source profile.
-//  * @param {string} profileType - The profile type of the linked profiles to return.
-//  * @param {string|null} sectionName - The section name in the source profile that has the list of linked profiles.
-//  * @param {string|null} fieldName - The field name in `sectionName` that stores the target linked-profile reference.
-//  * @returns {Array} - A 2D array with the current filter state and a function to update the state. The state is an
-//  * Object with several properties. The `filtered` property of the state is an array of Profile objects with the
-//  * ordered list of profiles to render.
-//  */
-// const useLinkedProfileFilterState = function (
-//     profile,
-//     profileType,
-//     sectionName,
-//     fieldName,
-//     initialSelection
-// ) {
-//     return profile.useLinkedProfileFilterState(
-//         useState,
-//         useEffect,
-//         profileType,
-//         sectionName,
-//         fieldName,
-//         initialSelection
-//     );
-// };
-
-// /**
-//  * Get a function to update the filter and sorting state of the given list of profile.
-//  *
-//  * @param {Profile} profile - The source profile.
-//  * @param {Array} profiles - The list of profiles to filter and sort.
-//  * @returns {Array} - A 2D array with the current filter state and a function to update the state. The state is an
-//  * Object with several properties. The `filtered` property of the state is an array of Profile objects with the
-//  * ordered list of profiles to render.
-//  */
-// const useProfileFilterState = function (profile, profiles, initialSelection) {
-//     return profile.useProfileFilterState(useState, useEffect, profiles, initialSelection);
-// };
 
 /**
  * Strip html string uses regular expressions;
@@ -258,7 +193,6 @@ export {
     stripTags,
     useGetProfile,
     useLoadProfileBody,
-    useProfileFilterState,
     useBlockInputFilterState,
     useBlockState,
     useParams,

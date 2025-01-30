@@ -3,7 +3,6 @@ import Image from './Image';
 import Asset from './Asset';
 import FileLogo from './FileLogo';
 import SafeHtml from './SafeHtml';
-import Pages from './Pages';
 import Icon from './Icon';
 import Disclaimer from './Disclaimer';
 import {
@@ -11,7 +10,6 @@ import {
     website,
     useGetProfile,
     useLoadProfileBody,
-    useProfileFilterState,
     useBlockInputFilterState,
     useBlockState,
     getComponent,
@@ -27,21 +25,13 @@ import Media from './Media';
 import { twJoin, twMerge } from 'tailwind-merge';
 
 // Methods and objects from the Uniweb engine
-const { parseLinksInArticle, getFirstElementInMap } = uniweb.getServices();
-export { Profile, website, parseLinksInArticle, getFirstElementInMap, getPageProfile, stripTags };
+export { Profile, website, getPageProfile, stripTags };
 
 // React components
-export { Link, Image, Asset, Icon, SafeHtml, FileLogo, MediaIcon, Pages, Media, Disclaimer };
+export { Link, Image, Asset, Icon, SafeHtml, FileLogo, MediaIcon, Media, Disclaimer };
 
 // Locally defined functions
-export {
-    useBlockState,
-    useGetProfile,
-    useLoadProfileBody,
-    useProfileFilterState,
-    useBlockInputFilterState,
-    getComponent
-};
+export { useBlockState, useGetProfile, useLoadProfileBody, useBlockInputFilterState, getComponent };
 
 // routing hooks
 export { useParams, useLocation, useSWR, useNavigate };
