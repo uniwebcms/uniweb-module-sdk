@@ -73,7 +73,22 @@ export default function ({ to, href, ...props }) {
 
     // Check if the extracted extension matches any known file extensions
     if (isFileLink(linkHref)) {
-        return `<a href=${linkHref} target='_blank' download onclick="event.preventDefault(); uniweb.downloadFile('${linkHref}');return false;">${props.children}</a>`;
+        // return `<a href=${linkHref} target='_blank' download onclick="event.preventDefault(); uniweb.downloadFile('${linkHref}');return false;">${props.children}</a>`;
+
+        return (
+            <a
+                href={linkHref}
+                target="_blank"
+                download
+                onClick={(e) => {
+                    e.preventDefault();
+                    uniweb.downloadFile(linkHref);
+                    return false;
+                }}
+            >
+                {props.children}
+            </a>
+        );
     }
 
     return <Link to={linkHref} {...props} />;
