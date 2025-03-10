@@ -26,7 +26,8 @@ const fileExtensions = [
     'mp4',
     'mp3',
     'wav',
-    'mov'
+    'mov',
+    'zip'
 ];
 
 function isFileLink(href) {
