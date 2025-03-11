@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { website } from './helper';
 
 const { SafeHtml } = website.getRoutingComponents();
 
-export default SafeHtml;
+export default (props) => (
+    <Suspense fallback={null}>
+        <SafeHtml {...props} />
+    </Suspense>
+);
 
 // /**
 //  * Render a generic container with a given HTML string inserted into it.
