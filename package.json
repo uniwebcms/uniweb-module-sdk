@@ -1,6 +1,6 @@
 {
     "name": "@uniwebcms/module-sdk",
-    "version": "1.23.9",
+    "version": "1.23.10",
     "description": "",
     "main": "dist/bundle.js",
     "files": [
