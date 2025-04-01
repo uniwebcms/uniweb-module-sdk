@@ -30,7 +30,7 @@ const UniwebIcon = ({
 
     // States
     const [svgContent, setSvgContent] = useState(svg || '');
-    const [isLoading, setIsLoading] = useState((!name || !svg) && !!url);
+    const [isLoading, setIsLoading] = useState((!parsedName || !svg) && !url);
     const [error, setError] = useState(null);
 
     const isNormalImg = !!url;
@@ -137,10 +137,6 @@ const UniwebIcon = ({
                 const rootFill = svg.getAttribute('fill');
                 const rootStroke = svg.getAttribute('stroke');
 
-                if (color || className.includes('text-')) {
-                    svg.style.color = 'inherit';
-                }
-
                 const elements = svg.querySelectorAll(
                     'path, circle, rect, line, polyline, polygon, ellipse'
                 );
@@ -213,7 +209,7 @@ const UniwebIcon = ({
         // Success - render the processed SVG
         return (
             <div
-                className={className}
+                className={`${className}`}
                 style={iconStyle}
                 dangerouslySetInnerHTML={{ __html: processedSvg }}
                 {...props}
@@ -225,7 +221,7 @@ const UniwebIcon = ({
                 <img
                     src={url}
                     alt={parsedName}
-                    className={'w-full h-full inline-block'}
+                    className={`w-full h-full block`}
                     style={{ backgroundColor: 'inherit' }}
                     draggable={false}
                 />
