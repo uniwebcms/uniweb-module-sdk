@@ -184,7 +184,7 @@ const UniwebIcon = ({
 
     // Error state
 
-    if (error || !processedSvg) return null;
+    if (error || (!processedSvg && !isNormalImg)) return null;
 
     let iconStyle = {};
 
