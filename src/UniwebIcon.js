@@ -134,6 +134,9 @@ const UniwebIcon = ({
 
             // Apply color styling if not preserving original colors
             if (!preserveColors) {
+                const rootFill = svg.getAttribute('fill');
+                const rootStroke = svg.getAttribute('stroke');
+
                 if (color || className.includes('text-')) {
                     svg.style.color = 'inherit';
                 }
@@ -142,16 +145,20 @@ const UniwebIcon = ({
                     'path, circle, rect, line, polyline, polygon, ellipse'
                 );
                 elements.forEach((el) => {
-                    if (el.hasAttribute('fill') && el.getAttribute('fill') !== 'none') {
-                        el.setAttribute('fill', 'currentColor');
-                    } else if (!el.hasAttribute('fill')) {
-                        el.setAttribute('fill', 'currentColor');
+                    if (rootFill !== 'none') {
+                        if (el.hasAttribute('fill') && el.getAttribute('fill') !== 'none') {
+                            el.setAttribute('fill', 'currentColor');
+                        } else if (!el.hasAttribute('fill')) {
+                            el.setAttribute('fill', 'currentColor');
+                        }
                     }
 
-                    if (el.hasAttribute('stroke') && el.getAttribute('stroke') !== 'none') {
-                        el.setAttribute('stroke', 'currentColor');
-                    } else if (!el.hasAttribute('stroke')) {
-                        el.setAttribute('stroke', 'currentColor');
+                    if (rootStroke !== 'none') {
+                        if (el.hasAttribute('stroke') && el.getAttribute('stroke') !== 'none') {
+                            el.setAttribute('stroke', 'currentColor');
+                        } else if (!el.hasAttribute('stroke')) {
+                            el.setAttribute('stroke', 'currentColor');
+                        }
                     }
                 });
             }
