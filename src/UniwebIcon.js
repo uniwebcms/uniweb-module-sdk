@@ -20,10 +20,20 @@ const UniwebIcon = ({
     // Additional props
     ...props
 }) => {
+    let parsedName = '';
+
+    if (typeof name === 'string') {
+        parsedName = name;
+    } else if (typeof name === 'object') {
+        parsedName = name.filename;
+    }
+
     // States
     const [svgContent, setSvgContent] = useState(svg || '');
     const [isLoading, setIsLoading] = useState((!name || !svg) && !!url);
     const [error, setError] = useState(null);
+
+    const isNormalImg = !!url;
 
     // Demo built-in icons
     const DEMO_ICONS = useMemo(
@@ -40,6 +50,11 @@ const UniwebIcon = ({
 
     // Effect to handle URL-based SVG loading
     useEffect(() => {
+        if (isNormalImg) {
+            setIsLoading(false);
+            return;
+        }
+
         // If SVG content is directly provided, use it
         if (svg) {
             setSvgContent(svg);
@@ -48,8 +63,8 @@ const UniwebIcon = ({
         }
 
         // If name is provided and exists in demo icons
-        if (name && DEMO_ICONS[name]) {
-            setSvgContent(DEMO_ICONS[name]);
+        if (parsedName && DEMO_ICONS[parsedName]) {
+            setSvgContent(DEMO_ICONS[parsedName]);
             setIsLoading(false);
             return;
         }
@@ -87,7 +102,7 @@ const UniwebIcon = ({
         };
 
         fetchSVG();
-    }, [url, svg, name]);
+    }, [url, svg, parsedName, isNormalImg]);
 
     // Process SVG content to prepare for rendering
     const processedSvg = useMemo(() => {
@@ -174,20 +189,42 @@ const UniwebIcon = ({
     }
 
     if (color) {
-        iconStyle = {
-            ...iconStyle,
-            color: color
-        };
+        if (isNormalImg) {
+            iconStyle = {
+                ...iconStyle,
+                backgroundColor: color
+            };
+        } else {
+            iconStyle = {
+                ...iconStyle,
+                color: color
+            };
+        }
     }
-    // Success - render the processed SVG
-    return (
-        <div
-            className={className}
-            style={iconStyle}
-            dangerouslySetInnerHTML={{ __html: processedSvg }}
-            {...props}
-        />
-    );
+
+    if (!isNormalImg) {
+        // Success - render the processed SVG
+        return (
+            <div
+                className={className}
+                style={iconStyle}
+                dangerouslySetInnerHTML={{ __html: processedSvg }}
+                {...props}
+            />
+        );
+    } else {
+        return (
+            <div className={`${className}`} style={iconStyle} {...props}>
+                <img
+                    src={url}
+                    alt={parsedName}
+                    className={'w-full h-full inline-block'}
+                    style={{ backgroundColor: 'inherit' }}
+                    draggable={false}
+                />
+            </div>
+        );
+    }
 };
 
 export default UniwebIcon;
