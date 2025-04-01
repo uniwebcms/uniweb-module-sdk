@@ -137,26 +137,30 @@ const UniwebIcon = ({
                 const rootFill = svg.getAttribute('fill');
                 const rootStroke = svg.getAttribute('stroke');
 
-                const elements = svg.querySelectorAll(
-                    'path, circle, rect, line, polyline, polygon, ellipse'
-                );
-                elements.forEach((el) => {
-                    if (rootFill !== 'none') {
-                        if (el.hasAttribute('fill') && el.getAttribute('fill') !== 'none') {
-                            el.setAttribute('fill', 'currentColor');
-                        } else if (!el.hasAttribute('fill')) {
-                            el.setAttribute('fill', 'currentColor');
-                        }
-                    }
+                if (color) {
+                    svg.style.color = 'inherit';
 
-                    if (rootStroke !== 'none') {
-                        if (el.hasAttribute('stroke') && el.getAttribute('stroke') !== 'none') {
-                            el.setAttribute('stroke', 'currentColor');
-                        } else if (!el.hasAttribute('stroke')) {
-                            el.setAttribute('stroke', 'currentColor');
+                    const elements = svg.querySelectorAll(
+                        'path, circle, rect, line, polyline, polygon, ellipse'
+                    );
+                    elements.forEach((el) => {
+                        if (rootFill !== 'none') {
+                            if (el.hasAttribute('fill') && el.getAttribute('fill') !== 'none') {
+                                el.setAttribute('fill', 'currentColor');
+                            } else if (!el.hasAttribute('fill')) {
+                                el.setAttribute('fill', 'currentColor');
+                            }
                         }
-                    }
-                });
+
+                        if (rootStroke !== 'none') {
+                            if (el.hasAttribute('stroke') && el.getAttribute('stroke') !== 'none') {
+                                el.setAttribute('stroke', 'currentColor');
+                            } else if (!el.hasAttribute('stroke')) {
+                                el.setAttribute('stroke', 'currentColor');
+                            }
+                        }
+                    });
+                }
             }
 
             return svg.outerHTML;
