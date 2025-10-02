@@ -185,6 +185,21 @@ const filterProfiles = (profiles, histogram, selection) => {
     return filtered;
 };
 
+const useSecureSubmission = (block) => {
+    let formId = block.id;
+
+    const { isSubmitting, error } = uniweb.form.useSubmissionEffect(useState, useEffect, formId);
+
+    const secureSubmit = React.useCallback(
+        async (formData, preview, files = []) => {
+            return await block.submitForm(formData, preview, files);
+        },
+        [formId]
+    );
+
+    return { secureSubmit, isSubmitting, error };
+};
+
 export {
     Profile,
     website,
@@ -192,6 +207,7 @@ export {
     getPageProfile,
     stripTags,
     useGetProfile,
+    useSecureSubmission,
     useLoadProfileBody,
     useBlockInputFilterState,
     useBlockState,

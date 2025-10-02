@@ -11,7 +11,8 @@ import {
     useParams,
     useLocation,
     useSWR,
-    useNavigate
+    useNavigate,
+    useSecureSubmission
 } from './helper';
 
 import { twJoin, twMerge } from 'tailwind-merge';
@@ -20,7 +21,14 @@ import { twJoin, twMerge } from 'tailwind-merge';
 export { Profile, website, getPageProfile, stripTags };
 
 // Locally defined functions
-export { useBlockState, useGetProfile, useLoadProfileBody, useBlockInputFilterState, getComponent };
+export {
+    useBlockState,
+    useGetProfile,
+    useSecureSubmission,
+    useLoadProfileBody,
+    useBlockInputFilterState,
+    getComponent
+};
 
 // routing hooks
 export { useParams, useLocation, useSWR, useNavigate };
