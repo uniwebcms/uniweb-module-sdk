@@ -1,3 +1,20 @@
+## ⚠️ Deprecated
+
+This repository is part of an earlier iteration of the Uniweb framework and is no longer maintained.
+
+**The current version is at [github.com/uniweb](https://github.com/uniweb):**
+- CLI & quickstart: [github.com/uniweb/cli](https://github.com/uniweb/cli)
+- Documentation: [github.com/uniweb/docs](https://github.com/uniweb/docs)
+- npm packages: `uniweb`, `@uniweb/*`
+
+```bash
+  pnpm create uniweb my-site
+```
+
+---
+
+The original README follows for historical reference.
+
 # Uniweb Module Software Development Kit (SDK)
 
 [Uniweb CMS](https://uniwebcms.com) is a **web engine** with advanced built-in intelligence to manage rich data and build websites from templates. The logic that is necessary for creating the user interface of a website exists at the level of **web components** that are powered by the web engine.
